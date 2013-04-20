@@ -1,0 +1,14 @@
+{
+  "name": "asteroid-connector-soap",
+  "version": "0.0.1",
+  "description": "Asteroid's SOAP connector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "soap": "latest"
+  },
+  "repository": "",
+  "author": "Raymond Feng <raymond@strongloop.com>"
+}
