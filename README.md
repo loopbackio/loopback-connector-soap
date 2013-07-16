@@ -1,4 +1,4 @@
-asteroid-connector-soap
+loopback-connector-soap
 =======================
 
-Asteroid's SOAP based Web Services Connector
+Loopback's SOAP based Web Services Connector
