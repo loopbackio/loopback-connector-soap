@@ -1,14 +1,27 @@
 {
-  "name": "loopback-connector-soap",
-  "version": "0.0.1",
-  "description": "Loopback's SOAP connector",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "soap": "latest"
-  },
-  "repository": "",
-  "author": "Raymond Feng <raymond@strongloop.com>"
+    "name": "loopback-connector-soap",
+    "version": "0.0.1",
+    "description": "LoopBack SOAP Web Services Connector",
+    "main": "index.js",
+    "scripts": {
+        "test": "./node_modules/.bin/mocha --timeout 30000 test/*test.js",
+        "blanket": {
+            "pattern": "//^((?!(node_modules|test)).)*$/"
+        },
+        "coverage": "mocha -r blanket -R html-cov > coverage_loopback-connector-soap.html"
+    },
+    "dependencies": {
+        "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git",
+        "easysoap": "latest"
+    },
+    "devDependencies": {
+        "loopback": "git+ssh://git@github.com:strongloop/loopback.git",
+        "should": "latest",
+        "mocha": "latest",
+        "blanket": "latest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/strongloop/loopback-connector-soap.git"
+    }
 }
