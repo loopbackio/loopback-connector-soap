@@ -11,11 +11,12 @@ var clientParams = {
     /*
     //set soap header (optional)
     header  : [{
-        'name'      : 'item_name',
-        'value'     : 'item_value',
-        'namespace' : 'item_namespace'
+        'name'      : 'Action',
+        'value'     : 'http://www.webserviceX.NET/GetQuote',
+        'namespace' : 'http://www.w3.org/2005/08/addressing'
     }]
     */
+
 };
 
 //soap client options
@@ -35,8 +36,9 @@ SoapClient.once('initialized', function() {
 
     SoapClient.call({
         'method' : 'GetQuote',
+        'namespace': 'http://www.webserviceX.NET/',
         'params' : {
-            'tns:symbol': 'IBM'
+            'symbol': 'IBM'
         }
     });
 });
