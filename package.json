@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-soap",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
@@ -12,17 +12,18 @@
   },
   "dependencies": {
     "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git",
-    "easysoap": "latest",
+    "easysoap": "~0.4.3",
     "ws.js": "0.0.17"
   },
   "devDependencies": {
     "loopback": "git+ssh://git@github.com:strongloop/loopback.git",
-    "should": "latest",
-    "mocha": "latest",
-    "blanket": "latest"
+    "should": "~1.2.2",
+    "mocha": "~1.12.1",
+    "blanket": "~1.1.5"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/strongloop/loopback-connector-soap.git"
-  }
+  },
+  "license": "MIT"
 }
