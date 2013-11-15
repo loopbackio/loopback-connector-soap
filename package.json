@@ -4,22 +4,17 @@
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --timeout 30000 test/*test.js",
-    "blanket": {
-      "pattern": "//^((?!(node_modules|test)).)*$/"
-    },
-    "coverage": "mocha -r blanket -R html-cov > coverage_loopback-connector-soap.html"
+    "test": "./node_modules/.bin/mocha --timeout 30000 test/*test.js"
   },
   "dependencies": {
-    "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git",
-    "easysoap": "~0.4.3",
+    "loopback-datasource-juggler": "1.x.x",
+    "easysoap": "~0.5.2",
     "ws.js": "0.0.17"
   },
   "devDependencies": {
-    "loopback": "git+ssh://git@github.com:strongloop/loopback.git",
-    "should": "~1.2.2",
-    "mocha": "~1.12.1",
-    "blanket": "~1.1.5"
+    "loopback": "1.x.x",
+    "should": "~2.1.0",
+    "mocha": "~1.14.0"
   },
   "repository": {
     "type": "git",
