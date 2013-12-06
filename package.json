@@ -7,11 +7,14 @@
     "test": "./node_modules/.bin/mocha --timeout 30000 test/*test.js"
   },
   "dependencies": {
-    "loopback-datasource-juggler": "1.x.x",
     "easysoap": "~0.5.2",
     "ws.js": "0.0.17"
   },
+  "peerDependencies": {
+    "loopback-datasource-juggler": "1.x.x"
+  },
   "devDependencies": {
+    "loopback-datasource-juggler": "1.x.x",
     "loopback": "1.x.x",
     "should": "~2.1.0",
     "mocha": "~1.14.0"
