@@ -23,5 +23,8 @@
     "type": "git",
     "url": "https://github.com/strongloop/loopback-connector-soap.git"
   },
-  "license": "MIT"
+  "license": {
+    "name": "StrongLoop",
+    "url": "https://github.com/strongloop/loopback-connector-soap/blob/master/LICENSE"
+  }
 }
