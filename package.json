@@ -17,7 +17,8 @@
     "loopback-datasource-juggler": "1.x.x",
     "loopback": "1.x.x",
     "should": "~3.1.3",
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "loopback-explorer": "~1.1.0"
   },
   "repository": {
     "type": "git",
