@@ -6,8 +6,8 @@ app.set('restApiRoot', '/api');
 var ds = loopback.createDataSource('soap',
   {
     connector: require('../index'),
+    remotingEnabled: true,
     wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL' // The url to WSDL
-
   });
 
 // Unfortunately, the methods from the connector are mixed in asynchronously
@@ -21,14 +21,17 @@ ds.once('connected', function () {
   WeatherService.forecast = function(zip, cb) {
     WeatherService.GetCityForecastByZIP({ZIP: zip || '94555'}, function (err, response) {
       console.log('Forecast: %j', response);
-      cb(err, response);
+      var result = response.GetCityForecastByZIPResult.ForecastResult.Forecast;
+      cb(err, result);
     });
   };
 
   WeatherService.weather = function(zip, cb) {
     WeatherService.GetCityWeatherByZIP({ZIP: zip || '94555'}, function (err, response) {
       console.log('Weather: %j', response);
-      cb(err, response);
+      // var result = response.GetCityWeatherByZIPResult.Temperature;
+      var result = response;
+      cb(err, result);
     });
   };
 

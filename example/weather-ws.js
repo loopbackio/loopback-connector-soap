@@ -4,7 +4,6 @@ var ds = loopback.createDataSource('soap',
   {
     connector: require('../index'),
     wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL' // The url to WSDL
-
   });
 
 // Unfortunately, the methods from the connector are mixed in asynchronously
@@ -19,6 +18,10 @@ ds.once('connected', function () {
 
   WeatherService.GetCityWeatherByZIP({ZIP: '94555'}, function (err, response) {
     console.log('Weather: %j', response);
+  });
+
+  WeatherService.GetWeatherInformation(function (err, response) {
+    console.log('Info: %j', response);
   });
 
 });
