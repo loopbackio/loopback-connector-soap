@@ -4,7 +4,7 @@
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --timeout 30000 test/*test.js"
+    "test": "./node_modules/.bin/mocha -R spec --timeout 30000 test/*test.js"
   },
   "dependencies": {
     "soap": "~0.4.0",
