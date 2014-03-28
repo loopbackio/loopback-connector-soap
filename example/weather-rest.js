@@ -18,15 +18,16 @@ ds.once('connected', function () {
   var WeatherService = ds.createModel('WeatherService', {});
 
   // Refine the methods
-  WeatherService.forecast = function(zip, cb) {
+  WeatherService.forecast = function (zip, cb) {
     WeatherService.GetCityForecastByZIP({ZIP: zip || '94555'}, function (err, response) {
       console.log('Forecast: %j', response);
-      var result = response.GetCityForecastByZIPResult.ForecastResult.Forecast;
+      var result = (!err && response.GetCityForecastByZIPResult.Success) ?
+        response.GetCityForecastByZIPResult.ForecastResult.Forecast : [];
       cb(err, result);
     });
   };
 
-  WeatherService.weather = function(zip, cb) {
+  WeatherService.weather = function (zip, cb) {
     WeatherService.GetCityWeatherByZIP({ZIP: zip || '94555'}, function (err, response) {
       console.log('Weather: %j', response);
       // var result = response.GetCityWeatherByZIPResult.Temperature;
@@ -43,7 +44,7 @@ ds.once('connected', function () {
           http: {source: 'query'}}
       ],
       returns: {arg: 'result', type: 'object', root: true},
-      http: {verb: 'get', path: '/forcast'}
+      http: {verb: 'get', path: '/forecast'}
     }
   );
 
@@ -67,10 +68,10 @@ ds.once('connected', function () {
   try {
     var explorer = require('loopback-explorer')(app);
     app.use('/explorer', explorer);
-    app.once('started', function(baseUrl) {
+    app.once('started', function (baseUrl) {
       console.log('Browse your REST API at %s%s', baseUrl, explorer.route);
     });
-  } catch(e){
+  } catch (e) {
     console.log(
       'Run `npm install loopback-explorer` to enable the LoopBack explorer'
     );
@@ -79,14 +80,14 @@ ds.once('connected', function () {
   app.use(loopback.urlNotFound());
   app.use(loopback.errorHandler());
 
-  if(require.main === module) {
+  if (require.main === module) {
     app.start();
   }
 
 });
 
-app.start = function() {
-  return app.listen(3000, function() {
+app.start = function () {
+  return app.listen(3000, function () {
     var baseUrl = 'http://127.0.0.1:3000';
     app.emit('started', baseUrl);
     console.log('LoopBack server listening @ %s%s', baseUrl, '/');
