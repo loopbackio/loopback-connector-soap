@@ -1,19 +1,26 @@
 # loopback-connector-soap
 
-Loopback's SOAP based Web Services Connector
+The SOAP connector enables LoopBack applications to interact with [SOAP](http://www.w3.org/TR/soap) based Web
+Services described using [WSDL](http://www.w3.org/TR/wsdl).
 
-# Configure the SOAP data source
+# Configure a SOAP data source
 
+To invoke a SOAP web service, we first configure a data source backed by the SOAP
+connector.
+
+```js
     var ds = loopback.createDataSource('soap', {
         connector: 'loopback-connector-soap'
         remotingEnabled: true,
         wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL'
     });
+```
 
-## Options
+## Options for the SOAP connector
 
-- url: url to the SOAP web service endpoint, if not present, the `location`
-attribute of the soap address for the service/port. For example,
+- **url**: url to the SOAP web service endpoint, if not present, the `location`
+attribute of the soap address for the service/port from the WSDL document will be
+used. For example,
 
 ```xml
     <wsdl:service name="Weather">
@@ -24,12 +31,13 @@ attribute of the soap address for the service/port. For example,
     </wsdl:service>
 ```
 
-- wsdl: url or path to the wsdl file, if not present, defaults to <url>?wsdl
+- **wsdl**: http url or local file system path to the wsdl file, if not present,
+defaults to <url>?wsdl.
 
-- remotingEnabled: indicates if the operations will be further exposed as REST
+- **remotingEnabled**: indicates if the operations will be further exposed as REST
 APIs
 
-- operations: maps WSDL binding operations to Node.js methods
+- **operations**: maps WSDL binding operations to Node.js methods
 
 ```json
     operations: {
@@ -48,6 +56,11 @@ APIs
 ```
 
 # Create a model from the SOAP data source
+
+**NOTE** The SOAP connector loads the WSDL document asynchronously. As a result,
+the data source won't be ready to create models until it's connected. The
+recommended way is to use an event handler for the 'connected' event.
+
 ```js
     ds.once('connected', function () {
 
@@ -95,3 +108,27 @@ to define the mappings.
     );
 
 ```
+
+# Examples
+
+- stock-ws.js: Get stock quotes by symbols
+
+```sh
+    node example/stock-ws
+```
+
+- weather-ws.js: Get weather and forecast information for a given zip code
+
+```sh
+    node example/weather-ws
+```
+
+- weather-rest.js: Expose REST APIs to proxy the SOAP web services
+
+```sh
+    node example/weather-rest
+```
+
+Open http://localhost:3000/explorer
+
+
