@@ -39,7 +39,7 @@ APIs
 
 - **operations**: maps WSDL binding operations to Node.js methods
 
-```json
+```js
     operations: {
       // The key is the method name
       stockQuote: {
@@ -54,6 +54,44 @@ APIs
       }
     }
 ```
+
+- **security**: security configuration
+
+```js
+    security: {
+        scheme: 'WS',
+        username: 'test',
+        password: 'testpass',
+        passwordType: 'PasswordDigest'
+   }
+```
+
+The valid schemes are 'WS' (or 'WSSecurity'), 'BasicAuth', and 'ClientSSL'.
+
+  - WS
+    - username: the user name
+    - password: the password
+    - passwordType: default to 'PasswordText'
+
+  - BasicAuth
+    - username: the user name
+    - password: the password
+
+  - ClientSSL
+    - keyPath: path to the private key file
+    - certPath: path to the certificate file
+
+- **soapHeaders**: custom soap headers
+
+```js
+    soapHeaders: [{
+        element: {myHeader: 'XYZ'}, // The XML element in JSON object format
+        prefix: 'p1', // The XML namespace prefix for the header
+        namespace: 'http://ns1' // The XML namespace URI for the header
+    }]
+```
+The property value should be an array of objects that can be mapped to xml elements
+or xml strings.
 
 # Create a model from the SOAP data source
 
