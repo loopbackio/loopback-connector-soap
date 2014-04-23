@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "title": "LoopBack SOAP Connector",
+      "depth": 2
+    },
+    "lib/soap-connector.js",
+  ],
+  "codeSectionDepth": 3
+}
+
+
