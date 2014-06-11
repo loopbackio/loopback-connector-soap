@@ -1,6 +1,7 @@
 var should = require('should');
 var loopback = require('loopback');
 var path = require('path');
+var assert = require('assert');
 
 describe('soap connector', function () {
   describe('wsdl configuration', function () {
@@ -83,6 +84,18 @@ describe('soap connector', function () {
           response.GetCityWeatherByZIPResult.Success.should.be.true;
           done();
         });
+      });
+
+      it('should support xmlToJSON methods', function () {
+        var WeatherService = ds.createModel('WeatherService', {});
+        assert.equal(typeof WeatherService.xmlToJSON, 'function');
+        assert.equal(typeof WeatherService.GetCityWeatherByZIP.xmlToJSON, 'function');
+      });
+
+      it('should support jsonToXML methods', function () {
+        var WeatherService = ds.createModel('WeatherService', {});
+        assert.equal(typeof WeatherService.jsonToXML, 'function');
+        assert.equal(typeof WeatherService.GetCityWeatherByZIP.jsonToXML, 'function');
       });
 
     });
