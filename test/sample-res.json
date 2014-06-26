@@ -1,0 +1,105 @@
+{
+  "ForecastReturn": {
+    "Success": "true",
+    "ResponseText": "City Found",
+    "State": "CA",
+    "City": "Fremont",
+    "WeatherStationCity": "Fremont",
+    "ForecastResult": {
+      "Forecast": [
+        {
+          "Date": "2013-01-03T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": {},
+            "DaytimeHigh": "56"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": {},
+            "Daytime": "00"
+          }
+        },
+        {
+          "Date": "2013-01-04T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": "38",
+            "DaytimeHigh": "57"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": "00",
+            "Daytime": "00"
+          }
+        },
+        {
+          "Date": "2013-01-05T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": "38",
+            "DaytimeHigh": "58"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": "00",
+            "Daytime": "10"
+          }
+        },
+        {
+          "Date": "2013-01-06T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": "42",
+            "DaytimeHigh": "56"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": "20",
+            "Daytime": "20"
+          }
+        },
+        {
+          "Date": "2013-01-07T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": "38",
+            "DaytimeHigh": "59"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": "10",
+            "Daytime": "10"
+          }
+        },
+        {
+          "Date": "2013-01-08T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": "39",
+            "DaytimeHigh": "59"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": "10",
+            "Daytime": "10"
+          }
+        },
+        {
+          "Date": "2013-01-09T00:00:00",
+          "WeatherID": "2",
+          "Desciption": "Partly Cloudy",
+          "Temperatures": {
+            "MorningLow": "40",
+            "DaytimeHigh": "58"
+          },
+          "ProbabilityOfPrecipiation": {
+            "Nighttime": "10",
+            "Daytime": "10"
+          }
+        }
+      ]
+    }
+  }
+}
+
