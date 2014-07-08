@@ -33,13 +33,14 @@ describe('soap connector', function () {
 
       test.server.listen(3000, null, null, function () {
         test.soapServer = soap.listen(test.server, '/stockquote', test.service, test.wsdl);
+        test.soapServer.wsdl.options.attributesKey = 'attributes';
         test.baseUrl =
           'http://' + test.server.address().address + ":" + test.server.address().port;
 
         test.soapServer.authenticate = function (security) {
           var created, nonce, password, user, token;
           token = security.UsernameToken, user = token.Username,
-            password = token.Password, nonce = token.Nonce, created = token.Created;
+            password = token.Password.$value, nonce = token.Nonce.$value, created = token.Created;
           return user === 'test' && password === soap.passwordDigest(nonce, created, 'testpass');
         };
 

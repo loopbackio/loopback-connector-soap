@@ -118,12 +118,12 @@ describe('soap connector', function () {
           assert.equal(typeof WeatherService.GetCityForecastByZIP.jsonToXML, 'function');
           var xml = WeatherService.jsonToXML('GetCityForecastByZIP', JSON.parse(sampleReqJson));
           assert.equal(xml, '<tns:GetCityForecastByZIP' +
-            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/">' +
+            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns="http://ws.cdyne.com/WeatherWS/">' +
             '<tns:ZIP>95131</tns:ZIP></tns:GetCityForecastByZIP>');
 
           xml = WeatherService.GetCityForecastByZIP.jsonToXML(JSON.parse(sampleReqJson));
           assert.equal(xml, '<tns:GetCityForecastByZIP' +
-            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/">' +
+            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns="http://ws.cdyne.com/WeatherWS/">' +
             '<tns:ZIP>95131</tns:ZIP></tns:GetCityForecastByZIP>');
         });
       });
