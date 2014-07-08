@@ -1,6 +1,8 @@
 var should = require('should');
 var loopback = require('loopback');
 var path = require('path');
+var fs = require('fs');
+var assert = require('assert');
 
 describe('soap connector', function () {
   describe('wsdl configuration', function () {
@@ -82,6 +84,47 @@ describe('soap connector', function () {
           should.not.exist(err);
           response.GetCityWeatherByZIPResult.Success.should.be.true;
           done();
+        });
+      });
+
+      describe('XML/JSON conversion utilities', function() {
+        var sampleReq, sampleReqJson, sampleRes, sampleResJson;
+
+        before(function() {
+          sampleReq = fs.readFileSync(path.join(__dirname, 'sample-req.xml'), 'utf-8');
+          sampleReqJson = fs.readFileSync(path.join(__dirname, 'sample-req.json'), 'utf-8');
+          sampleRes = fs.readFileSync(path.join(__dirname, 'sample-res.xml'), 'utf-8');
+          sampleResJson = fs.readFileSync(path.join(__dirname, 'sample-res.json'), 'utf-8');
+        });
+
+        it('should support xmlToJSON methods', function () {
+          var WeatherService = ds.createModel('WeatherService', {});
+          assert.equal(typeof WeatherService.xmlToJSON, 'function');
+          assert.equal(typeof WeatherService.GetCityForecastByZIP.xmlToJSON, 'function');
+
+          var json = WeatherService.xmlToJSON('GetCityForecastByZIP', sampleReq);
+          assert.deepEqual(json, JSON.parse(sampleReqJson));
+
+          json = WeatherService.GetCityForecastByZIP.xmlToJSON(sampleReq);
+          assert.deepEqual(json, JSON.parse(sampleReqJson));
+
+          json = WeatherService.GetCityForecastByZIP.xmlToJSON(sampleRes);
+          assert.deepEqual(json, JSON.parse(sampleResJson));
+        });
+
+        it('should support jsonToXML methods', function () {
+          var WeatherService = ds.createModel('WeatherService', {});
+          assert.equal(typeof WeatherService.jsonToXML, 'function');
+          assert.equal(typeof WeatherService.GetCityForecastByZIP.jsonToXML, 'function');
+          var xml = WeatherService.jsonToXML('GetCityForecastByZIP', JSON.parse(sampleReqJson));
+          assert.equal(xml, '<tns:GetCityForecastByZIP' +
+            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns="http://ws.cdyne.com/WeatherWS/">' +
+            '<tns:ZIP>95131</tns:ZIP></tns:GetCityForecastByZIP>');
+
+          xml = WeatherService.GetCityForecastByZIP.jsonToXML(JSON.parse(sampleReqJson));
+          assert.equal(xml, '<tns:GetCityForecastByZIP' +
+            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns="http://ws.cdyne.com/WeatherWS/">' +
+            '<tns:ZIP>95131</tns:ZIP></tns:GetCityForecastByZIP>');
         });
       });
 

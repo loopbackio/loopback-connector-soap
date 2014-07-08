@@ -1,4 +1,6 @@
 var loopback = require('loopback');
+var path = require('path');
+
 var app = module.exports = loopback();
 
 app.set('restApiRoot', '/api');
@@ -7,7 +9,8 @@ var ds = loopback.createDataSource('soap',
   {
     connector: require('../index'),
     remotingEnabled: true,
-    wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL' // The url to WSDL
+    // wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL' // The url to WSDL
+    wsdl: path.join(__dirname, './weather.wsdl')
   });
 
 // Unfortunately, the methods from the connector are mixed in asynchronously

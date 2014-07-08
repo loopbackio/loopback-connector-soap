@@ -3,6 +3,8 @@
 The SOAP connector enables LoopBack applications to interact with [SOAP](http://www.w3.org/TR/soap) based Web
 Services described using [WSDL](http://www.w3.org/TR/wsdl).
 
+Please see the [official documentation](http://docs.strongloop.com/display/LB/SOAP+connector).
+
 # Configure a SOAP data source
 
 To invoke a SOAP web service, we first configure a data source backed by the SOAP
