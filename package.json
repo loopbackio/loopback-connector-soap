@@ -10,9 +10,6 @@
     "soap": "~0.4.7",
     "debug": "~1.0.2"
   },
-  "peerDependencies": {
-    "loopback-datasource-juggler": "1.x.x"
-  },
   "devDependencies": {
     "loopback-datasource-juggler": "1.x.x",
     "loopback": "1.x.x",
