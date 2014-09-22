@@ -158,6 +158,61 @@ describe('soap connector', function () {
       });
 
     });
+
+    describe('models with operations', function(){
+      var ds;
+      before(function (done) {
+        ds = loopback.createDataSource('soap',
+          {
+            connector: require('../index'),
+            wsdl: path.join(__dirname, 'wsdls/weather.wsdl'),
+            operations : {
+                weatherInfo: {
+                    service : 'Weather',
+                    port    : 'WeatherSoap',
+                    operation : 'GetWeatherInformation'
+                },
+                cityForecastByZIP: {
+                    service : 'Weather',
+                    port    : 'WeatherSoap',
+                    operation : 'GetCityForecastByZIP'
+                },
+                cityWeatherByZIP: {
+                    service : 'Weather',
+                    port    : 'WeatherSoap',
+                    operation : 'GetCityWeatherByZIP'
+                }
+            }
+          });
+        ds.on('connected', function () {
+          done();
+        });
+      });
+
+      it('should create mapped methods for operations', function (done) {
+        var WeatherService = ds.createModel('WeatherService', {});
+
+        // Operation mapped method names are defined
+        (typeof WeatherService.cityForecastByZIP).should.eql('function');
+        (typeof WeatherService.cityWeatherByZIP).should.eql('function');
+        (typeof WeatherService.weatherInfo).should.eql('function');
+
+        // Actual method names are defined
+        (typeof WeatherService.GetCityForecastByZIP).should.eql('function');
+        (typeof WeatherService.GetCityWeatherByZIP).should.eql('function');
+        (typeof WeatherService.GetWeatherInformation).should.eql('function');
+        
+        // Full method names for SOAP 12 operations are not defined  (operations method defs prevent these from being created)
+        (typeof WeatherService.Weather_WeatherSoap12_GetWeatherInformation).should.eql('undefined');
+        (typeof WeatherService.Weather_WeatherSoap12_GetCityForecastByZIP).should.eql('undefined');
+        (typeof WeatherService.Weather_WeatherSoap12_GetCityWeatherByZIP).should.eql('undefined');
+
+        done();
+      });
+
+
+
+    });
   });
 
 });
