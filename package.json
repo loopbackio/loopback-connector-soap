@@ -7,15 +7,15 @@
     "test": "./node_modules/.bin/mocha -R spec --timeout 30000 test/*test.js"
   },
   "dependencies": {
-    "soap": "~0.4.7",
-    "debug": "~1.0.2"
+    "soap": "^0.5.1",
+    "debug": "^2.0.0"
   },
   "devDependencies": {
-    "loopback-datasource-juggler": "1.x.x",
-    "loopback": "1.x.x",
-    "should": "~3.3.0",
-    "mocha": "~1.18.2",
-    "loopback-explorer": "~1.1.0"
+    "loopback-datasource-juggler": "2.x.x",
+    "loopback": "2.x.x",
+    "should": "~4.0.4",
+    "mocha": "~1.21.4",
+    "loopback-explorer": "~1.2.11"
   },
   "repository": {
     "type": "git",
