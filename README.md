@@ -43,7 +43,7 @@ APIs
 
 ```js
     wsdl_options: {
-        rejectUnhauthorized: false,
+        rejectUnauthorized: false,
         strictSSL: false,
         requestCert: true,
     },
