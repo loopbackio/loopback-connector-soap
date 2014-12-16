@@ -39,6 +39,15 @@ defaults to <url>?wsdl.
 - **remotingEnabled**: indicates if the operations will be further exposed as REST
 APIs
 
+- **wsdl_options**: Indicates additonal options to pass to the soap connector. for example allowing self signed certificates:
+
+```js
+    wsdl_options: {
+        rejectUnhauthorized: false,
+        strictSSL: false,
+        requestCert: true,
+    },
+
 - **operations**: maps WSDL binding operations to Node.js methods
 
 ```js
