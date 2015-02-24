@@ -1,3 +1,15 @@
+2015-02-24, Version 1.2.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * Fix bad CLA URL in CONTRIBUTING.md (Ryan Graham)
+
+ * Typo (Mike Valstar)
+
+ * Update README.md (Mike Valstar)
+
+
 2014-11-27, Version 1.1.3
 =========================
 
