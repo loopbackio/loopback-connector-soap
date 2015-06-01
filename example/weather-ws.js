@@ -9,6 +9,13 @@ var ds = loopback.createDataSource('soap',
 // Unfortunately, the methods from the connector are mixed in asynchronously
 // This is a hack to wait for the methods to be injected
 ds.once('connected', function () {
+
+  // Set up a before-execute hook to dump out the request object
+  ds.connector.observe('before execute', function(ctx, next) {
+    console.log('Http Request: ', ctx.req);
+    next();
+  });
+
 // Create the model
   var WeatherService = ds.createModel('WeatherService', {});
 
