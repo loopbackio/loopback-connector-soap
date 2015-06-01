@@ -1,3 +1,15 @@
+2015-06-01, Version 1.3.0
+=========================
+
+ * Update to latest node-soap (Raymond Feng)
+
+ * Add hooks for the underlying soap invocation (Raymond Feng)
+
+ * bump(soap) bump node-soap version from 0.8 to 0.9 (Alexandre L)
+
+ * Add strongloop license check (Raymond Feng)
+
+
 2015-02-24, Version 1.2.0
 =========================
 
