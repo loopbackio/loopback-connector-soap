@@ -117,14 +117,12 @@ describe('soap connector', function () {
           assert.equal(typeof WeatherService.jsonToXML, 'function');
           assert.equal(typeof WeatherService.GetCityForecastByZIP.jsonToXML, 'function');
           var xml = WeatherService.jsonToXML('GetCityForecastByZIP', JSON.parse(sampleReqJson));
-          assert.equal(xml, '<tns:GetCityForecastByZIP' +
-            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns="http://ws.cdyne.com/WeatherWS/">' +
-            '<tns:ZIP>95131</tns:ZIP></tns:GetCityForecastByZIP>');
+          assert.equal(xml, '<GetCityForecastByZIP xmlns="http://ws.cdyne.com/WeatherWS/">' +
+            '<ZIP>95131</ZIP></GetCityForecastByZIP>');
 
           xml = WeatherService.GetCityForecastByZIP.jsonToXML(JSON.parse(sampleReqJson));
-          assert.equal(xml, '<tns:GetCityForecastByZIP' +
-            ' xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns="http://ws.cdyne.com/WeatherWS/">' +
-            '<tns:ZIP>95131</tns:ZIP></tns:GetCityForecastByZIP>');
+          assert.equal(xml, '<GetCityForecastByZIP xmlns="http://ws.cdyne.com/WeatherWS/">' +
+            '<ZIP>95131</ZIP></GetCityForecastByZIP>');
         });
       });
 
@@ -210,7 +208,75 @@ describe('soap connector', function () {
         done();
       });
 
+    });
 
+    describe('soap invocations', function() {
+      var ds;
+      var StockQuote;
+
+      before(function(done) {
+        ds = loopback.createDataSource('soap',
+          {
+            connector: require('../index'),
+            wsdl: 'http://www.webservicex.net/stockquote.asmx?WSDL', // The url to WSDL
+            url: 'http://www.webservicex.net/stockquote.asmx', // The service endpoint
+
+            // Map SOAP service/port/operation to Node.js methods
+            operations: {
+              // The key is the method name
+              stockQuote: {
+                service: 'StockQuote', // The WSDL service name
+                port: 'StockQuoteSoap', // The WSDL port name
+                operation: 'GetQuote' // The WSDL operation name
+              },
+              // The key is the method name
+              stockQuote12: {
+                service: 'StockQuote', // The WSDL service name
+                port: 'StockQuoteSoap12', // The WSDL port name
+                operation: 'GetQuote' // The WSDL operation name
+              }
+            }
+          });
+        ds.on('connected', function() {
+          StockQuote = ds.createModel('StockQuote', {});
+          done();
+        });
+      });
+
+      it('should invoke the stockQuote', function(done) {
+        StockQuote.stockQuote({symbol: 'IBM'}, function(err, response) {
+          response.GetQuoteResult.should.match(
+            /<StockQuotes><Stock><Symbol>IBM<\/Symbol>/);
+          done();
+        });
+      });
+
+      it('should invoke the stockQuote12', function(done) {
+        StockQuote.stockQuote({symbol: 'FB'}, function(err, response) {
+          response.GetQuoteResult.should.match(
+            /<StockQuotes><Stock><Symbol>FB<\/Symbol>/);
+          done();
+        });
+      });
+
+      it('should invoke hooks', function(done) {
+        var events = [];
+        var connector = ds.connector;
+        connector.observe('before execute', function(ctx, next) {
+          assert(ctx.req);
+          events.push('before execute');
+          next();
+        });
+        connector.observe('after execute', function(ctx, next) {
+          assert(ctx.res);
+          events.push('after execute');
+          next();
+        });
+        StockQuote.stockQuote({symbol: 'IBM'}, function(err, response) {
+          assert.deepEqual(events, ['before execute', 'after execute']);
+          done(err, response);
+        });
+      });
 
     });
   });
