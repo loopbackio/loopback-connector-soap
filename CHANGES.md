@@ -1,3 +1,16 @@
+2015-09-29, Version 2.1.0
+=========================
+
+ * Use strongloop conventions for licensing (Sam Roberts)
+
+ * Add connector hook to the example (Raymond Feng)
+
+
+2015-06-01, Version 2.0.0
+=========================
+
+
+
 2015-06-01, Version 1.3.0
 =========================
 
