@@ -1,3 +1,9 @@
+2015-10-09, Version 2.2.0
+=========================
+
+ * Add support for request options (Raymond Feng)
+
+
 2015-09-29, Version 2.1.1
 =========================
 
