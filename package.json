@@ -9,7 +9,7 @@
   "dependencies": {
     "debug": "^2.1.1",
     "request": "^2.55.0",
-    "soap": "^0.9.4",
+    "soap": "^0.10.3",
     "strongloop-license": "^1.0.2"
   },
   "devDependencies": {
