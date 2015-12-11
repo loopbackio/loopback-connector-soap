@@ -1,7 +1,7 @@
 {
-  "name": "loopback-connector-soap-bearer",
+  "name": "loopback-connector-soap",
   "version": "2.3.0",
-  "description": "LoopBack SOAP Web Services Connector with Bearer security scheme",
+  "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec --timeout 30000 test/*test.js"
