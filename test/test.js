@@ -212,49 +212,44 @@ describe('soap connector', function () {
 
     describe('soap invocations', function() {
       var ds;
-      var StockQuote;
+      var WeatherService;
 
       before(function(done) {
         ds = loopback.createDataSource('soap',
           {
             connector: require('../index'),
-            wsdl: 'http://www.webservicex.net/stockquote.asmx?WSDL', // The url to WSDL
-            url: 'http://www.webservicex.net/stockquote.asmx', // The service endpoint
-
+            wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL', // The url to WSDL
+            url: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx', // The service endpoint
             // Map SOAP service/port/operation to Node.js methods
             operations: {
               // The key is the method name
-              stockQuote: {
-                service: 'StockQuote', // The WSDL service name
-                port: 'StockQuoteSoap', // The WSDL port name
-                operation: 'GetQuote' // The WSDL operation name
+              cityWeatherByZIP: {
+                service: 'Weather', // The WSDL service name
+                port: 'WeatherSoap', // The WSDL port name
+                operation: 'GetCityWeatherByZIP' // The WSDL operation name
               },
-              // The key is the method name
-              stockQuote12: {
-                service: 'StockQuote', // The WSDL service name
-                port: 'StockQuoteSoap12', // The WSDL port name
-                operation: 'GetQuote' // The WSDL operation name
+              cityWeatherByZIP12: {
+                service: 'Weather', // The WSDL service name
+                port: 'WeatherSoap12', // The WSDL port name
+                operation: 'GetCityWeatherByZIP' // The WSDL operation name
               }
             }
           });
         ds.on('connected', function() {
-          StockQuote = ds.createModel('StockQuote', {});
+          WeatherService = ds.createModel('WeatherService',{});
           done();
         });
       });
 
-      it('should invoke the stockQuote', function(done) {
-        StockQuote.stockQuote({symbol: 'IBM'}, function(err, response) {
-          response.GetQuoteResult.should.match(
-            /<StockQuotes><Stock><Symbol>IBM<\/Symbol>/);
+      it('should invoke the Weather', function(done) {
+        WeatherService.cityWeatherByZIP({ZIP: '94555'}, function(err, response) {
+          response.GetCityWeatherByZIPResult.ResponseText.should.equal("City Found")
           done();
         });
       });
-
-      it('should invoke the stockQuote12', function(done) {
-        StockQuote.stockQuote({symbol: 'FB'}, function(err, response) {
-          response.GetQuoteResult.should.match(
-            /<StockQuotes><Stock><Symbol>FB<\/Symbol>/);
+      it('should invoke the Weather12', function(done) {
+        WeatherService.cityWeatherByZIP12({ZIP: '48206'}, function(err, response) {
+          response.GetCityWeatherByZIPResult.ResponseText.should.equal("City Found")
           done();
         });
       });
@@ -272,7 +267,7 @@ describe('soap connector', function () {
           events.push('after execute');
           next();
         });
-        StockQuote.stockQuote({symbol: 'IBM'}, function(err, response) {
+        WeatherService.cityWeatherByZIP({ZIP: '94555'}, function(err, response) {
           assert.deepEqual(events, ['before execute', 'after execute']);
           done(err, response);
         });
