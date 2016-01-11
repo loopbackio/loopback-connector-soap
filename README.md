@@ -47,6 +47,7 @@ APIs
         strictSSL: false,
         requestCert: true,
     },
+```
 
 - **operations**: maps WSDL binding operations to Node.js methods
 
