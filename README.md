@@ -5,7 +5,7 @@ Services described using [WSDL](http://www.w3.org/TR/wsdl).
 
 Please see the [official documentation](http://docs.strongloop.com/display/LB/SOAP+connector).
 
-# Configure a SOAP data source
+## Configure a SOAP data source
 
 To invoke a SOAP web service, we first configure a data source backed by the SOAP
 connector.
@@ -105,7 +105,7 @@ The valid schemes are 'WS' (or 'WSSecurity'), 'BasicAuth', and 'ClientSSL'.
 The property value should be an array of objects that can be mapped to xml elements
 or xml strings.
 
-# Create a model from the SOAP data source
+## Create a model from the SOAP data source
 
 **NOTE** The SOAP connector loads the WSDL document asynchronously. As a result,
 the data source won't be ready to create models until it's connected. The
@@ -121,7 +121,7 @@ recommended way is to use an event handler for the 'connected' event.
     }
 ```
 
-# Extend a model to wrap/mediate SOAP operations
+## Extend a model to wrap/mediate SOAP operations
 
 Once the model is defined, it can be wrapped or mediated to define new methods.
 The following example simplifies the `GetCityForecastByZIP` operation to a method
@@ -159,26 +159,6 @@ to define the mappings.
 
 ```
 
-# Examples
+## Examples
 
-- stock-ws.js: Get stock quotes by symbols
-
-```sh
-    node example/stock-ws
-```
-
-- weather-ws.js: Get weather and forecast information for a given zip code
-
-```sh
-    node example/weather-ws
-```
-
-- weather-rest.js: Expose REST APIs to proxy the SOAP web services
-
-```sh
-    node example/weather-rest
-```
-
-Open http://localhost:3000/explorer
-
-
+See https://github.com/strongloop/loopback-example-connector/tree/soap.
