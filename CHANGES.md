@@ -1,3 +1,19 @@
+2016-02-19, Version 2.3.1
+=========================
+
+ * Remove sl-blip from dependencies (Miroslav Bajtoš)
+
+ * Add new example location to README.md (Simon Ho)
+
+ * Remove example dir (Simon Ho)
+
+ * Fix typo in readme.md (David Cheung)
+
+ * Changing soap invocation test to weather services (David Cheung)
+
+ * Refer to licenses with a link (Sam Roberts)
+
+
 2015-10-23, Version 2.3.0
 =========================
 
