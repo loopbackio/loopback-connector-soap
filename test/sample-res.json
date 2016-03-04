@@ -12,11 +12,11 @@
           "WeatherID": "2",
           "Desciption": "Partly Cloudy",
           "Temperatures": {
-            "MorningLow": {},
+            "MorningLow": null,
             "DaytimeHigh": "56"
           },
           "ProbabilityOfPrecipiation": {
-            "Nighttime": {},
+            "Nighttime": null,
             "Daytime": "00"
           }
         },
