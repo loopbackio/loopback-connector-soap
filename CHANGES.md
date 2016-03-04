@@ -1,3 +1,9 @@
+2016-03-04, Version 2.4.0
+=========================
+
+ * Upgrade deps and remove license check (Raymond Feng)
+
+
 2016-02-19, Version 2.3.1
 =========================
 
