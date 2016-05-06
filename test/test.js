@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2014,2015. All Rights Reserved.
+// Node module: loopback-connector-soap
+// US Government Users Restricted Rights - Use, duplication or disclosure
+// restricted by GSA ADP Schedule Contract with IBM Corp.
+
 var should = require('should');
 var loopback = require('loopback');
 var path = require('path');
