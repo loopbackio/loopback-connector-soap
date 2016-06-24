@@ -1,3 +1,15 @@
+2016-06-24, Version 2.5.0
+=========================
+
+ * Upgrade to soap@0.16 (Raymond Feng)
+
+ * Honor security options (Raymond Feng)
+
+ * Update deps (Raymond Feng)
+
+ * Update soap-connector.js (Ritchie Martori)
+
+
 2016-05-06, Version 2.4.1
 =========================
 
