@@ -1,0 +1,5 @@
+{
+  "349b9be10e4084f59d8efc0c207a77a9": "Method not found in {{WSDL}} port types: {0}",
+  "791ab3031a73ede03f7d6299a85e8289": "Timeout in connecting after {0} ms",
+  "820b82f7e918976379aa812e78660c3a": "NOT Connected"
+}

@@ -1,3 +1,6 @@
 .project
 .idea
 node_modules
+!intl/en/
+intl/*
+
