@@ -9,7 +9,8 @@
   "dependencies": {
     "debug": "^2.1.1",
     "request": "^2.55.0",
-    "soap": "^0.16.0"
+    "soap": "^0.16.0",
+    "strong-globalize": "^2.5.8"
   },
   "devDependencies": {
     "loopback-datasource-juggler": "2.x.x",
