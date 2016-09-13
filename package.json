@@ -13,7 +13,6 @@
     "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
-    "loopback-datasource-juggler": "^3.0.0-alpha.8",
     "loopback": "^3.0.0-alpha.5",
     "should": "~9.0.1",
     "mocha": "~2.5.3"
