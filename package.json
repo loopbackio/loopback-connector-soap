@@ -1,15 +1,15 @@
 {
   "name": "loopback-connector-soap",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --timeout 30000 test/*test.js"
+    "test": "./node_modules/.bin/mocha -R spec --timeout 30000 test/*test.js"  
   },
   "dependencies": {
     "debug": "^2.1.1",
     "request": "^2.55.0",
-    "soap": "^0.16.0",
+    "strong-soap": "^1.0.1",
     "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
