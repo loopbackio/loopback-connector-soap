@@ -4,7 +4,7 @@
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
 var fs = require('fs'),
-  soap = require('soap'),
+  soap = require('strong-soap').soap,
   assert = require('assert'),
   loopback = require('loopback'),
   http = require('http');
@@ -18,7 +18,7 @@ test.service = {
         if (args.tickerSymbol === 'trigger error') {
           throw new Error('triggered server error');
         } else {
-          return { price: 19.56 };
+          return {TradePrice: { price: 19.56 }};
         }
       }
     }
@@ -86,7 +86,7 @@ describe('soap connector', function () {
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
-      StockQuote.GetLastTradePrice({tickerSymbol: 'IBM'}, function (err, quote) {
+      StockQuote.GetLastTradePrice({TradePriceRequest: {tickerSymbol: 'IBM'}}, function (err, quote) {
         assert.equal(quote.price, '19.56');
         done(err);
       });
@@ -108,7 +108,7 @@ describe('soap connector', function () {
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
-      StockQuote.GetLastTradePrice({tickerSymbol: 'IBM'}, function (err, quote) {
+      StockQuote.GetLastTradePrice({TradePriceRequest: {tickerSymbol: 'IBM'}}, function (err, quote) {
         assert(err);
         done();
       });
@@ -159,7 +159,7 @@ describe('soap connector', function () {
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
-      StockQuote.GetLastTradePrice({tickerSymbol: 'IBM'}, function (err, quote) {
+      StockQuote.GetLastTradePrice({TradePriceRequest:{tickerSymbol: 'IBM'}}, function (err, quote) {
         assert.equal(quote.price, '19.56');
         done(err);
       });
