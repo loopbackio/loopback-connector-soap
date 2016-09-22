@@ -13,7 +13,7 @@
     "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
-    "loopback": "^3.0.0-alpha.5",
+    "loopback": "^3.0.0",
     "should": "~9.0.1",
     "mocha": "~2.5.3"
   },
