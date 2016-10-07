@@ -1,4 +1,32 @@
-2016-06-24, Version 2.5.0
+2016-10-07, Version 3.0.0
+=========================
+
+ * changed mocha timeout (rashmihunt)
+
+ * changed debug string (rashmihunt)
+
+ * fixed tests and debug string (rashmihunt)
+
+ * integrate loopback connector with strong-soap (deepakrkris)
+
+ * Update translation files - round#2 (Candy)
+
+ * Add translated files (gunjpan)
+
+ * Update deps to loopback 3.0.0 RC (Miroslav Bajtoš)
+
+ * Remove juggler as a dependency (Amir Jafarian)
+
+ * Use juggler@3 and loopback@3 for testing (Amir Jafarian)
+
+ * Update globalization (Amir Jafarian)
+
+ * Add support for globalization (Amir Jafarian)
+
+ * Update URLs in CONTRIBUTING.md (#37) (Ryan Graham)
+
+
+2016-06-23, Version 2.5.0
 =========================
 
  * Upgrade to soap@0.16 (Raymond Feng)
