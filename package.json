@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-soap",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
