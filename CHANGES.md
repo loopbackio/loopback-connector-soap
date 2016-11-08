@@ -1,4 +1,10 @@
-2016-10-07, Version 3.0.0
+2016-11-08, Version 3.0.1
+=========================
+
+ * removed intln entries (rashmihunt)
+
+
+2016-10-06, Version 3.0.0
 =========================
 
  * changed mocha timeout (rashmihunt)
