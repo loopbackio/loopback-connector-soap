@@ -1,6 +1,9 @@
 {
   "name": "loopback-connector-soap",
   "version": "3.0.1",
+  "publishConfig": {
+    "tag": "lts"
+  },
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
