@@ -1,6 +1,9 @@
 {
   "name": "loopback-connector-soap",
   "version": "3.0.1",
+  "publishConfig": {
+    "tag": "lts"
+  },
   "description": "LoopBack SOAP Web Services Connector",
   "main": "index.js",
   "scripts": {
@@ -13,9 +16,9 @@
     "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
-    "loopback": "^3.0.0",
-    "should": "~9.0.1",
-    "mocha": "~2.5.3"
+    "loopback": "^2.36.0",
+    "mocha": "~2.5.3",
+    "should": "~9.0.1"
   },
   "repository": {
     "type": "git",
