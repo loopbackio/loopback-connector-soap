@@ -1,7 +1,10 @@
 {
   "name": "loopback-connector-soap",
-  "version": "3.0.1",
+  "version": "4.0.0-alpha.1",
   "description": "LoopBack SOAP Web Services Connector",
+  "engines": {
+    "node": ">=4"
+  },
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec --timeout 60000 test/*test.js"
