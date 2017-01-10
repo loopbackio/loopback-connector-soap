@@ -3,51 +3,57 @@
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
+'use strict';
+
 var should = require('should');
 var loopback = require('loopback');
 var path = require('path');
 var fs = require('fs');
 var assert = require('assert');
 
-describe('soap connector', function () {
-  describe('wsdl configuration', function () {
-    //skipping the test since external web service http://wsf.cdyne.com/WeatherWS/Weather.asmx is down for weeks and until
-    //there is decision on whether we should use another external web service as a replacement.
-    it.skip('should be able to derive wsdl from url', function (done) {
+describe('soap connector', function() {
+  describe('wsdl configuration', function() {
+    // skipping the test since external web service
+    // http://wsf.cdyne.com/WeatherWS/Weather.asmx is down for weeks and until
+    // there is decision on whether we should use another external web service
+    // as a replacement.
+    it.skip('should be able to derive wsdl from url', function(done) {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
-          url: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx' // The service endpoint
+          url: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx', // The service endpoint
         });
-      ds.on('connected', function () {
+      ds.on('connected', function() {
         ds.connector.should.have.property('client');
         ds.connector.client.should.have.property('wsdl');
         done();
       });
     });
 
-    it('should be able to support local wsdl', function (done) {
+    it('should be able to support local wsdl', function(done) {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
-          wsdl: path.join(__dirname, 'wsdls/weather.wsdl')
+          wsdl: path.join(__dirname, 'wsdls/weather.wsdl'),
         });
-      ds.on('connected', function () {
+      ds.on('connected', function() {
         ds.connector.should.have.property('client');
         ds.connector.client.should.have.property('wsdl');
         done();
       });
     });
 
-    //skipping the test since external web service http://wsf.cdyne.com/WeatherWS/Weather.asmx is down for weeks and until
-    //there is decision on whether we should use another external web service as a replacement.
-    it.skip('should be able to support remote wsdl', function (done) {
+    // skipping the test since external web service
+    // http://wsf.cdyne.com/WeatherWS/Weather.asmx is down for weeks and until
+    // there is decision on whether we should use another external web service
+    // as a replacement.
+    it.skip('should be able to support remote wsdl', function(done) {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
-          wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL'
+          wsdl: 'http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL',
         });
-      ds.on('connected', function () {
+      ds.on('connected', function() {
         ds.connector.should.have.property('client');
         ds.connector.client.should.have.property('wsdl');
         done();
@@ -55,21 +61,21 @@ describe('soap connector', function () {
     });
   });
 
-  describe('models', function () {
-    describe('models without remotingEnabled', function () {
+  describe('models', function() {
+    describe('models without remotingEnabled', function() {
       var ds;
-      before(function (done) {
+      before(function(done) {
         ds = loopback.createDataSource('soap',
           {
             connector: require('../index'),
-            wsdl: path.join(__dirname, 'wsdls/weather.wsdl')
+            wsdl: path.join(__dirname, 'wsdls/weather.wsdl'),
           });
-        ds.on('connected', function () {
+        ds.on('connected', function() {
           done();
         });
       });
 
-      it('should create models', function (done) {
+      it('should create models', function(done) {
         var WeatherService = ds.createModel('WeatherService', {});
 
         // Short method names
@@ -85,15 +91,15 @@ describe('soap connector', function () {
         done();
       });
 
-      it('should support model methods', function (done) {
+      it('should support model methods', function(done) {
         var WeatherService = ds.createModel('WeatherService', {});
 
         // Short method names
-        WeatherService.GetCityWeatherByZIP({ZIP: '94555'}, function (err, response) {
+        WeatherService.GetCityWeatherByZIP({ZIP: '94555'}, function(err, response) {
           if (!err) {
             response.GetCityWeatherByZIPResult.Success.should.be.true;
           } else {
-            //weather external web service server is often down. It's ok to have server 'Internal Server Error' 500 from the server.
+            // weather external web service server is often down. It's ok to have server 'Internal Server Error' 500 from the server.
             assert.equal(err.response.statusCode, 500);
           }
           done();
@@ -110,7 +116,7 @@ describe('soap connector', function () {
           sampleResJson = fs.readFileSync(path.join(__dirname, 'sample-res.json'), 'utf-8');
         });
 
-        it('should support xmlToJSON methods', function () {
+        it('should support xmlToJSON methods', function() {
           var WeatherService = ds.createModel('WeatherService', {});
           assert.equal(typeof WeatherService.xmlToJSON, 'function');
           assert.equal(typeof WeatherService.GetCityForecastByZIP.xmlToJSON, 'function');
@@ -125,7 +131,7 @@ describe('soap connector', function () {
           assert.deepEqual(json, JSON.parse(sampleResJson));
         });
 
-        it('should support jsonToXML methods', function () {
+        it('should support jsonToXML methods', function() {
           var WeatherService = ds.createModel('WeatherService', {});
           assert.equal(typeof WeatherService.jsonToXML, 'function');
           assert.equal(typeof WeatherService.GetCityForecastByZIP.jsonToXML, 'function');
@@ -142,24 +148,23 @@ describe('soap connector', function () {
             '</ns1:GetCityForecastByZIP>');
         });
       });
-
     });
 
-    describe('models with remotingEnabled', function () {
+    describe('models with remotingEnabled', function() {
       var ds;
-      before(function (done) {
+      before(function(done) {
         ds = loopback.createDataSource('soap',
           {
             connector: require('../index'),
             remotingEnabled: true,
-            wsdl: path.join(__dirname, 'wsdls/weather.wsdl')
+            wsdl: path.join(__dirname, 'wsdls/weather.wsdl'),
           });
-        ds.on('connected', function () {
+        ds.on('connected', function() {
           done();
         });
       });
 
-      it('should create models', function (done) {
+      it('should create models', function(done) {
         var WeatherService = ds.createModel('WeatherService', {});
 
         // Short method names
@@ -171,40 +176,39 @@ describe('soap connector', function () {
 
         done();
       });
-
     });
 
-    describe('models with operations', function(){
+    describe('models with operations', function() {
       var ds;
-      before(function (done) {
+      before(function(done) {
         ds = loopback.createDataSource('soap',
           {
             connector: require('../index'),
             wsdl: path.join(__dirname, 'wsdls/weather.wsdl'),
-            operations : {
-                weatherInfo: {
-                    service : 'Weather',
-                    port    : 'WeatherSoap',
-                    operation : 'GetWeatherInformation'
-                },
-                cityForecastByZIP: {
-                    service : 'Weather',
-                    port    : 'WeatherSoap',
-                    operation : 'GetCityForecastByZIP'
-                },
-                cityWeatherByZIP: {
-                    service : 'Weather',
-                    port    : 'WeatherSoap',
-                    operation : 'GetCityWeatherByZIP'
-                }
-            }
+            operations: {
+              weatherInfo: {
+                service: 'Weather',
+                port: 'WeatherSoap',
+                operation: 'GetWeatherInformation',
+              },
+              cityForecastByZIP: {
+                service: 'Weather',
+                port: 'WeatherSoap',
+                operation: 'GetCityForecastByZIP',
+              },
+              cityWeatherByZIP: {
+                service: 'Weather',
+                port: 'WeatherSoap',
+                operation: 'GetCityWeatherByZIP',
+              },
+            },
           });
-        ds.on('connected', function () {
+        ds.on('connected', function() {
           done();
         });
       });
 
-      it('should create mapped methods for operations', function (done) {
+      it('should create mapped methods for operations', function(done) {
         var WeatherService = ds.createModel('WeatherService', {});
 
         // Operation mapped method names are defined
@@ -216,7 +220,7 @@ describe('soap connector', function () {
         (typeof WeatherService.GetCityForecastByZIP).should.eql('function');
         (typeof WeatherService.GetCityWeatherByZIP).should.eql('function');
         (typeof WeatherService.GetWeatherInformation).should.eql('function');
-        
+
         // Full method names for SOAP 12 operations are not defined  (operations method defs prevent these from being created)
         (typeof WeatherService.Weather_WeatherSoap12_GetWeatherInformation).should.eql('undefined');
         (typeof WeatherService.Weather_WeatherSoap12_GetCityForecastByZIP).should.eql('undefined');
@@ -224,11 +228,12 @@ describe('soap connector', function () {
 
         done();
       });
-
     });
 
-    //skipping the test since external web service http://wsf.cdyne.com/WeatherWS/Weather.asmx is down for weeks and until
-    //there is decision on whether we should use another external web service as a replacement.
+    // skipping the test since external web service
+    // http://wsf.cdyne.com/WeatherWS/Weather.asmx is down for weeks and until
+    // there is decision on whether we should use another external web service
+    // as a replacement.
     describe.skip('soap invocations', function() {
       var ds;
       var WeatherService;
@@ -245,17 +250,17 @@ describe('soap connector', function () {
               cityWeatherByZIP: {
                 service: 'Weather', // The WSDL service name
                 port: 'WeatherSoap', // The WSDL port name
-                operation: 'GetCityWeatherByZIP' // The WSDL operation name
+                operation: 'GetCityWeatherByZIP', // The WSDL operation name
               },
               cityWeatherByZIP12: {
                 service: 'Weather', // The WSDL service name
                 port: 'WeatherSoap12', // The WSDL port name
-                operation: 'GetCityWeatherByZIP' // The WSDL operation name
-              }
-            }
+                operation: 'GetCityWeatherByZIP', // The WSDL operation name
+              },
+            },
           });
         ds.on('connected', function() {
-          WeatherService = ds.createModel('WeatherService',{});
+          WeatherService = ds.createModel('WeatherService', {});
           done();
         });
       });
@@ -263,9 +268,9 @@ describe('soap connector', function () {
       it('should invoke the Weather', function(done) {
         WeatherService.cityWeatherByZIP({ZIP: '94555'}, function(err, response) {
           if (!err) {
-            response.GetCityWeatherByZIPResult.ResponseText.should.equal("City Found")
+            response.GetCityWeatherByZIPResult.ResponseText.should.equal('City Found');
           } else {
-            //weather external web service is often down. It's ok to have server 'Internal Server Error' 500 from the server
+            // weather external web service is often down. It's ok to have server 'Internal Server Error' 500 from the server
             assert.equal(err.response.statusCode, 500);
           }
           done();
@@ -274,9 +279,9 @@ describe('soap connector', function () {
       it('should invoke the Weather12', function(done) {
         WeatherService.cityWeatherByZIP12({ZIP: '48206'}, function(err, response) {
           if (!err) {
-            response.GetCityWeatherByZIPResult.ResponseText.should.equal("City Found")
+            response.GetCityWeatherByZIPResult.ResponseText.should.equal('City Found');
           } else {
-            //weather external web service is often down. It's ok to have server 'Internal Server Error' 500 from the server
+            // weather external web service is often down. It's ok to have server 'Internal Server Error' 500 from the server
             assert.equal(err.response.statusCode, 500);
           }
           done();
@@ -298,14 +303,12 @@ describe('soap connector', function () {
         });
         WeatherService.cityWeatherByZIP({ZIP: '94555'}, function(err, response) {
           assert.deepEqual(events, ['before execute', 'after execute']);
-          if (err) { //weather external web service is often down. It's ok to have server 'Internal Server Error' 500 from the server
+          if (err) { // weather external web service is often down. It's ok to have server 'Internal Server Error' 500 from the server
             assert.equal(err.response.statusCode, 500);
           }
           done();
         });
       });
-
     });
   });
-
 });
