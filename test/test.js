@@ -11,7 +11,9 @@ var assert = require('assert');
 
 describe('soap connector', function () {
   describe('wsdl configuration', function () {
-    it('should be able to derive wsdl from url', function (done) {
+    //skipping the test since external web service http://wsf.cdyne.com/WeatherWS/Weather.asmx down for weeks and until
+    //there is decision on wehther we should use another external web service replacing this.
+    it.skip('should be able to derive wsdl from url', function (done) {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
@@ -37,7 +39,9 @@ describe('soap connector', function () {
       });
     });
 
-    it('should be able to support remote wsdl', function (done) {
+    //skipping the test since external web service http://wsf.cdyne.com/WeatherWS/Weather.asmx down for weeks and until
+    //there is decision on wehther we should use another external web service replacing this.
+    it.skip('should be able to support remote wsdl', function (done) {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
@@ -223,7 +227,9 @@ describe('soap connector', function () {
 
     });
 
-    describe('soap invocations', function() {
+    //skipping the test since external web service http://wsf.cdyne.com/WeatherWS/Weather.asmx down for weeks and until
+    //there is decision on wehther we should use another external web service replacing this.
+    describe.skip('soap invocations', function() {
       var ds;
       var WeatherService;
 
