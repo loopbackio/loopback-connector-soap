@@ -36,11 +36,13 @@ describe('soap connector', function () {
         res.end();
       });
 
-      test.server.listen(3000, null, null, function () {
+      test.server.listen(process.env.PORT || 0, null, null, function () {
         test.soapServer = soap.listen(test.server, '/stockquote', test.service, test.wsdl);
         test.soapServer.wsdl.options.attributesKey = 'attributes';
-        test.baseUrl =
-          'http://' + test.server.address().address + ":" + test.server.address().port;
+
+        var address = test.server.address();
+        var IPaddress = address.family === 'IPv6' ? '[::1]' : address.address;
+        test.baseUrl = 'http://' + IPaddress + ':' + address.port;
 
         test.soapServer.authenticate = function (security) {
           var created, nonce, password, user, token;
@@ -82,7 +84,7 @@ describe('soap connector', function () {
           prefix: 'p1',
           namespace: 'http://ns1'
         }],
-        url: 'http://localhost:3000/stockquote' // The service endpoint
+        url: test.baseUrl + '/stockquote' // The service endpoint
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
@@ -104,7 +106,7 @@ describe('soap connector', function () {
           password: 'wrongpass',
           passwordType: 'PasswordDigest'
         },
-        url: 'http://localhost:3000/stockquote' // The service endpoint
+        url: test.baseUrl + '/stockquote' // The service endpoint
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
@@ -127,7 +129,7 @@ describe('soap connector', function () {
           username: 'test',
           password: 'testpass'
         },
-        url: 'http://localhost:3000/stockquote' // The service endpoint
+        url: test.baseUrl + '/stockquote' // The service endpoint
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
@@ -155,7 +157,7 @@ describe('soap connector', function () {
           prefix: 'p1',
           namespace: 'http://ns1'
         }],
-        url: 'http://localhost:3000/stockquote' // The service endpoint
+        url: test.baseUrl + '/stockquote' // The service endpoint
       });
     ds.on('connected', function () {
       var StockQuote = ds.createModel('StockQuote', {});
