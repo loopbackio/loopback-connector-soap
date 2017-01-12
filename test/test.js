@@ -70,17 +70,19 @@ describe('soap connector', function () {
       });
 
       it('should create models', function (done) {
-        var WeatherService = ds.createModel('WeatherService', {});
+        var WS = ds.createModel('WeatherService', {});
 
-        // Short method names
-        (typeof WeatherService.GetCityForecastByZIP).should.eql('function');
-        (typeof WeatherService.GetCityWeatherByZIP).should.eql('function');
-        (typeof WeatherService.GetWeatherInformation).should.eql('function');
-
-        // Full method names for SOAP 12 operations that conflict with the simple ones
-        (typeof WeatherService.Weather_WeatherSoap12_GetWeatherInformation).should.eql('function');
-        (typeof WeatherService.Weather_WeatherSoap12_GetCityForecastByZIP).should.eql('function');
-        (typeof WeatherService.Weather_WeatherSoap12_GetCityWeatherByZIP).should.eql('function');
+        [
+          'GetCityForecastByZIP',
+          'GetCityWeatherByZIP',
+          'GetWeatherInformation',
+        ].forEach(function(name) {
+          // Short method names
+          (typeof WS[name]).should.eql('function');
+          // Full method names for SOAP 12 operations that conflict with the
+          // simple ones
+          (typeof WS['Weather_WeatherSoap12_' + name]).should.eql('function');
+        })
 
         done();
       });
@@ -104,10 +106,16 @@ describe('soap connector', function () {
         var sampleReq, sampleReqJson, sampleRes, sampleResJson;
 
         before(function() {
-          sampleReq = fs.readFileSync(path.join(__dirname, 'sample-req.xml'), 'utf-8');
-          sampleReqJson = fs.readFileSync(path.join(__dirname, 'sample-req.json'), 'utf-8');
-          sampleRes = fs.readFileSync(path.join(__dirname, 'sample-res.xml'), 'utf-8');
-          sampleResJson = fs.readFileSync(path.join(__dirname, 'sample-res.json'), 'utf-8');
+          function sampleDir (file) {
+            return fs.readFileSync(
+              path.join(__dirname, 'sample', file), 'utf-8'
+            );
+          }
+
+          sampleReq = sampleDir('req.xml');
+          sampleReqJson = sampleDir('req.json');
+          sampleRes = sampleDir('res.xml');
+          sampleResJson = sampleDir('res.json');
         });
 
         it('should support xmlToJSON methods', function () {
@@ -205,22 +213,24 @@ describe('soap connector', function () {
       });
 
       it('should create mapped methods for operations', function (done) {
-        var WeatherService = ds.createModel('WeatherService', {});
+        var WS = ds.createModel('WeatherService', {});
 
         // Operation mapped method names are defined
-        (typeof WeatherService.cityForecastByZIP).should.eql('function');
-        (typeof WeatherService.cityWeatherByZIP).should.eql('function');
-        (typeof WeatherService.weatherInfo).should.eql('function');
+        (typeof WS.cityForecastByZIP).should.eql('function');
+        (typeof WS.cityWeatherByZIP).should.eql('function');
+        (typeof WS.weatherInfo).should.eql('function');
 
-        // Actual method names are defined
-        (typeof WeatherService.GetCityForecastByZIP).should.eql('function');
-        (typeof WeatherService.GetCityWeatherByZIP).should.eql('function');
-        (typeof WeatherService.GetWeatherInformation).should.eql('function');
-        
-        // Full method names for SOAP 12 operations are not defined  (operations method defs prevent these from being created)
-        (typeof WeatherService.Weather_WeatherSoap12_GetWeatherInformation).should.eql('undefined');
-        (typeof WeatherService.Weather_WeatherSoap12_GetCityForecastByZIP).should.eql('undefined');
-        (typeof WeatherService.Weather_WeatherSoap12_GetCityWeatherByZIP).should.eql('undefined');
+        [
+          'GetCityForecastByZIP',
+          'GetCityWeatherByZIP',
+          'GetWeatherInformation',
+        ].forEach(function(name) {
+          // Actual method names are defined
+          (typeof WS[name]).should.eql('function');
+          // Full method names for SOAP 12 operations are not defined
+          //  (operations method defs prevent these from being created)
+          (typeof WS['Weather_WeatherSoap12_' + name]).should.eql('undefined');
+        })
 
         done();
       });
