@@ -7,7 +7,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --timeout 60000 test/*test.js"
+    "test": "./node_modules/.bin/mocha -R spec --timeout 60000 test/*test.js",
+    "lint": "eslint .",
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "debug": "^2.1.1",
@@ -16,9 +18,11 @@
     "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
+    "eslint": "^3.13.1",
+    "eslint-config-loopback": "^7.0.0",
     "loopback": "^3.0.0",
-    "should": "~9.0.1",
-    "mocha": "~2.5.3"
+    "mocha": "~2.5.3",
+    "should": "~9.0.1"
   },
   "repository": {
     "type": "git",
