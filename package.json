@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --timeout 60000 test/*test.js"
+    "test": "mocha -R spec --timeout 60000 test/*test.js"
   },
   "dependencies": {
     "debug": "^2.1.1",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "loopback": "^3.0.0",
     "should": "~9.0.1",
-    "mocha": "~2.5.3"
+    "mocha": "^3.2.0"
   },
   "repository": {
     "type": "git",
