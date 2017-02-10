@@ -34,7 +34,7 @@ $ apic create --type datasource
 For LoopBack 2.x or 3.0, with StrongLoop tools:
 
 ```shell
-$ slc loopback:datasource
+$ lb datasource
 ```
 
 Choose "SOAP webservices" as the data source type when prompted.
