@@ -6,7 +6,7 @@ The SOAP connector enables LoopBack applications to interact with
 
 <p class="gh-only">
 For more information, see the
-<a href="http://loopback.io/doc/en/lb2/SOAP-connector.html">LoopBack documentation</a>.
+<a href="http://loopback.io/doc/en/lb3/SOAP-connector.html">LoopBack documentation</a>.
 </p>
 
 ## Installation
@@ -44,83 +44,79 @@ Choose "SOAP webservices" as the data source type when prompted.
 The following table describes the SOAP data source properties you can set in `datasources.json`.
 
 <table>
-  <tbody>
-    <tr>
-      <th>Property</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>url</td>
-      <td>String</td>
-      <td>
-        <p>URL to the SOAP web service endpoint. If not present, defaults to the
-        <code>location</code> attribute of the SOAP address for the service/port
-        from the WSDL document; for example:</p>
-        <pre><code>&lt;wsdl:service name="Weather"&gt;
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>    
+<tr>
+<td>url</td>
+<td>String</td>
+<td>URL to the SOAP web service endpoint. If not present, defaults to the
+<code>location</code> attribute of the SOAP address for the service/port
+from the WSDL document; for example:
+<pre><code>&lt;wsdl:service name="Weather"&gt;
   &lt;wsdl:port name="WeatherSoap"
     binding="tns:WeatherSoap"&gt;
   &lt;soap:address
     location="http://wsf.cdyne.com/WeatherWS/Weather.asmx" /&gt;
   &lt;/wsdl:port&gt; ...
 &lt;/wsdl:service&gt;</code></pre>
-      </td>
-    </tr>
-    <tr>
-      <td>wsdl</td>
-      <td>String</td>
-      <td>HTTP URL or local file system path to the WSDL file. Default is <code>?wsdl</code>.</td>
-    </tr>
-    <tr>
-      <td>wsdl_options</td>
-      <td>Object</td>
-      <td>Indicates additonal options to pass to the SOAP connector, for example allowing self signed certificates.
-      For example:
-      <pre><code>wsdl_options: {
-  rejectUnauthorized: false,
-  strictSSL: false,
-  requestCert: true,
+</td>
+</tr>
+<tr>
+<td>wsdl</td>
+<td>String</td>
+<td>HTTP URL or local file system path to the WSDL file. Default is <code>?wsdl</code>.</td>
+</tr>
+<tr>
+<td>wsdl_options</td>
+<td>Object</td>
+<td>Indicates additonal options to pass to the SOAP connector, for example allowing self signed certificates.
+For example:
+<pre><code>wsdl_options: {
+rejectUnauthorized: false,
+strictSSL: false,
+requestCert: true,
 }</code></pre></td>    
-    </tr>
-    <tr>
-      <td>remotingEnabled</td>
-      <td>Boolean</td>
-      <td>
-        <p>Indicates whether the operations are exposed as REST APIs.</p>
-        <p>To expose or hide a specific method, override with:</p>
-        <p><code>&lt;Model&gt;.&lt;method&gt;.shared = true | false;</code></p>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>operations</td>
-      <td>Object</td>
-      <td>Maps WSDL binding operations to Node.js methods. Each key in the JSON
-      object becomes the name of a method on the model.
-      See <a href="#operations-property">operations property</a> below.</td>
-    </tr>
-    
-    <tr>
-      <td>security</td>
-      <td>Object</td>
-      <td>security configuration.
-      See <a href="#security-property">security property</a> below.
-      </td>
-     </tr>
-     
-      <tr>
-       <td>soapHeaders</td>
-       <td>Array of objects.</td>
-       <td>Custom SOAP headers. An array of header properties.
-       For example:
+</tr>
+<tr>
+<td>remotingEnabled</td>
+<td>Boolean</td>
+<td>Indicates whether the operations are exposed as REST APIs. To expose or hide a specific method, override with:
+<pre><code>&lt;Model&gt;.&lt;method&gt;.shared = true | false;</code></pre>
+</td>
+</tr>
+<tr>
+<td>operations</td>
+<td>Object</td>
+<td>Maps WSDL binding operations to Node.js methods. Each key in the JSON
+object becomes the name of a method on the model.
+See <a href="#operations-property">operations property</a> below.</td>
+</tr>
+<tr>
+<td>security</td>
+<td>Object</td>
+<td>security configuration.
+See <a href="#security-property">security property</a> below.
+</td>
+</tr>
+<tr>
+<td>soapHeaders</td>
+<td>Array of objects.</td>
+<td>Custom SOAP headers. An array of header properties.
+ For example:
 <pre><code>soapHeaders: [{
- element: {myHeader: 'XYZ'}, // The XML element in JSON object format
- prefix: 'p1', // The XML namespace prefix for the header
- namespace: 'http://ns1' // The XML namespace URI for the header
+element: {myHeader: 'XYZ'}, // The XML element in JSON object format
+prefix: 'p1', // The XML namespace prefix for the header
+namespace: 'http://ns1' // The XML namespace URI for the header
 }]</code></pre>
-       </td>       
-      </tr>
-  </tbody>
+</td>       
+</tr>
+</tbody>
 </table>
 
 ### operations property
