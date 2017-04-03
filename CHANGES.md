@@ -1,3 +1,27 @@
+2017-02-07, Version 4.0.0
+=========================
+
+ * Upgrade mocha version (Raymond Feng)
+
+ * switch test cases to use stockquote (rashmihunt)
+
+ * fix typos (rashmihunt)
+
+ * skip 3 tests which use ext weather service (rashmihunt)
+
+ * Update README.md (Rand McKinney)
+
+ * Update paid support URL (Siddhi Pai)
+
+ * Start 3.x + drop support for Node v0.10/v0.12 (siddhipai)
+
+ * Drop support for Node v0.10 and v0.12 (Siddhi Pai)
+
+ * Start the development of the next major version (Siddhi Pai)
+
+ * Updated README (crandmck)
+
+
 2016-11-08, Version 3.0.1
 =========================
 
