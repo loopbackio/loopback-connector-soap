@@ -19,11 +19,11 @@
                         <WeatherID>2</WeatherID>
                         <Desciption>Partly Cloudy</Desciption>
                         <Temperatures>
-                            <MorningLow/>
+                            <MorningLow>37</MorningLow>
                             <DaytimeHigh>56</DaytimeHigh>
                         </Temperatures>
                         <ProbabilityOfPrecipiation>
-                            <Nighttime/>
+                            <Nighttime>00</Nighttime>
                             <Daytime>00</Daytime>
                         </ProbabilityOfPrecipiation>
                     </Forecast>
