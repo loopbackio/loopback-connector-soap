@@ -24,9 +24,11 @@ This will install the module from npm and add it as a dependency to the applicat
 
 The LoopBack command-line tool includes a command to generate (discover) models based on SOAP web service.  Use this command, `lb soap` to automatically create a set of models based on a SOAP service WSDL file.  For more information, see [SOAP generator](http://loopback.io/doc/en/lb3/SOAP-generator.html).
 
+**This command is the easiest way to create a LoopBack API backed by a SOAP web service.**
+
 ## Creating a data source
 
-Use the [Data source generator](http://loopback.io/doc/en/lb2/Data-source-generator.html) to add a SOAP data source to your application.
+Use the [data source generator](http://loopback.io/doc/en/lb2/Data-source-generator.html) to add a SOAP data source to your application.
 
 With the API Connect toolkit:
 
@@ -251,8 +253,7 @@ module.exports = function(periodictableperiodictableSoap) {
 
 You can extend a LoopBack model to wrap or mediate SOAP operations
 and define new methods.
-The following example simplifies the `GetCityForecastByZIP` operation to a method
-that takes `zip` and returns an array of forecasts.
+The following example simplifies the `GetAtomicNumber` operation:
 
 ```javascript
 periodictableperiodictableSoap.GetAtomicNumber = function(GetAtomicNumber, callback) {
@@ -264,27 +265,27 @@ periodictableperiodictableSoap.GetAtomicNumber = function(GetAtomicNumber, callb
 ```
 
 To expose the custom method on the model as a REST API,
-use `loopback.remoteMethod` to define the mappings.
+use `<model>.remoteMethod` to define the mappings.
 
 ```javascript
-periodictableperiodictableSoap.remoteMethod('GetAtomicWeight',
+periodictableperiodictableSoap.remoteMethod('GetAtomicNumber',
 { isStatic: true,
 produces:
  [ { produces: 'application/json' },
    { produces: 'application/xml' } ],
 accepts:
- [ { arg: 'GetAtomicWeight',
-     type: 'GetAtomicWeight',
-     description: 'GetAtomicWeight',
+ [ { arg: 'GetAtomicNumber',
+     type: 'GetAtomicNumber',
+     description: 'GetAtomicNumber',
      required: true,
      http: { source: 'body' } } ],
 returns:
  [ { arg: 'data',
-     type: 'GetAtomicWeightResponse',
-     description: 'GetAtomicWeightResponse',
+     type: 'GetAtomicNumberResponse',
+     description: 'GetAtomicNumberResponse',
      root: true } ],
-http: { verb: 'post', path: '/GetAtomicWeight' },
-description: 'GetAtomicWeight' }
+http: { verb: 'post', path: '/GetAtomicNumber' },
+description: 'GetAtomicNumber' }
 );
 ```
 
@@ -310,5 +311,4 @@ module.exports = function(periodictableperiodictableSoap) {
 
 ## Examples
 
-See [loopback-example-connector]
-(https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
+See [loopback-example-connector](https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
