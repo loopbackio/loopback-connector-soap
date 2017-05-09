@@ -20,21 +20,24 @@ $ npm install loopback-connector-soap --save
 This will install the module from npm and add it as a dependency to the application's 
 [package.json](http://loopback.io/doc/en/lb2/package.json.html) file.
 
+## Using the SOAP CLI
+
+The LoopBack command-line tool includes a command to generate (discover) models based on SOAP web service.  Use this command, `lb soap` to automatically create a set of models based on a SOAP service WSDL file.  For more information, see [SOAP generator](http://loopback.io/doc/en/lb3/SOAP-generator.html).
+
 ## Creating a data source
 
-Use the [Data source generator](http://loopback.io/doc/en/lb2/Data-source-generator.html) to add a SOAP data source
-to your application.
+Use the [Data source generator](http://loopback.io/doc/en/lb2/Data-source-generator.html) to add a SOAP data source to your application.
 
-For LoopBack 2.x, with the API Connect toolkit:
+With the API Connect toolkit:
 
 ```shell
 $ apic create --type datasource
 ```
 
-For LoopBack 2.x or 3.0, with StrongLoop tools:
+With LoopBack tools:
 
 ```shell
-$ slc loopback:datasource
+$ lb loopback:datasource
 ```
 
 Choose "SOAP webservices" as the data source type when prompted.
@@ -58,13 +61,11 @@ The following table describes the SOAP data source properties you can set in `da
 <td>URL to the SOAP web service endpoint. If not present, defaults to the
 <code>location</code> attribute of the SOAP address for the service/port
 from the WSDL document; for example:
-<pre><code>&lt;wsdl:service name="Weather"&gt;
-  &lt;wsdl:port name="WeatherSoap"
-    binding="tns:WeatherSoap"&gt;
-  &lt;soap:address
-    location="http://wsf.cdyne.com/WeatherWS/Weather.asmx" /&gt;
-  &lt;/wsdl:port&gt; ...
-&lt;/wsdl:service&gt;</code></pre>
+<pre><code><wsdl:service name="periodictable">
+<wsdl:port name="periodictableSoap" binding="tns:periodictableSoap">
+<soap:address location="http://www.webservicex.net/periodictable.asmx"/>
+</wsdl:port>
+</wsdl:service></code></pre>
 </td>
 </tr>
 <tr>
@@ -78,9 +79,9 @@ from the WSDL document; for example:
 <td>Indicates additonal options to pass to the SOAP connector, for example allowing self signed certificates.
 For example:
 <pre><code>wsdl_options: {
-rejectUnauthorized: false,
-strictSSL: false,
-requestCert: true,
+  rejectUnauthorized: false,
+  strictSSL: false,
+  requestCert: true,
 }</code></pre></td>    
 </tr>
 <tr>
@@ -111,8 +112,8 @@ See <a href="#security-property">security property</a> below.
  For example:
 <pre><code>soapHeaders: [{
 element: {myHeader: 'XYZ'}, // The XML element in JSON object format
-prefix: 'p1', // The XML namespace prefix for the header
-namespace: 'http://ns1' // The XML namespace URI for the header
+  prefix: 'p1', // The XML namespace prefix for the header
+  namespace: 'http://ns1' // The XML namespace URI for the header
 }]</code></pre>
 </td>       
 </tr>
@@ -131,28 +132,23 @@ following properties:
 | port | String | WSDL port name |
 | operation | String | WSDL operation name |
 
-Here is an example operations property for the stock quote service:
+Here is an example operations property for the periodic table service:
 
 ```javascript
 operations: {
   // The key is the method name
   stockQuote: {
-    service: 'StockQuote', // The WSDL service name
-    port: 'StockQuoteSoap', // The WSDL port name
-    operation: 'GetQuote' // The WSDL operation name
-  },
-  stockQuote12: {
-    service: 'StockQuote',
-    port: 'StockQuoteSoap12',
-    operation: 'GetQuote'
+    service: 'periodictable', // The WSDL service name
+    port: 'periodictableSoap', // The WSDL port name
+    operation: 'GetAtomicNumber' // The WSDL operation name
   }
 }
 ```
 
 ### security property
 
-The `security` property value is a JSON object witha `scheme` property.
-The other properties of the object depend on the value of that property.  For example:
+The `security` property value is a JSON object with a `scheme` property.
+The other properties of the object depend on the value of `scheme`.  For example:
 
 ```javascript
 security: {
@@ -170,7 +166,7 @@ security: {
     <th>Description</th>
     <th>Other properties</th>    
    </tr>
-    
+
    <tr>
     <td>WS</td>
     <td>WSSecurity scheme</td>
@@ -204,32 +200,27 @@ security: {
     </ul>    
     </td>    
    </tr>
-   
+
   </tbody>
 </table>
 
-## Example datasource.json 
+## Example datasource.json
 
 A complete example datasource.json:
 
 ```javascript
 {
-  "WeatherServiceDS": {
-    "url": "http://wsf.cdyne.com/WeatherWS/Weather.asmx",
-    "name": "WeatherServiceDS",
-    "connector": "soap",
-    "wsdl": "http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL",
+  "soapDS": {
+    "url": "http://www.webservicex.net/periodictable.asmx",
+    "name": "soapDS",
+    "wsdl": "http://www.webservicex.net/periodictable.asmx?WSDL",
     "remotingEnabled": true,
+    "connector": "soap"
     "operations": {
-      "stockQuote": {
-        "service": "StockQuote",
-        "port": "StockQuoteSoap",
-        "operation": "GetQuote"
-      },
-      "stockQuote12": {
-        "service": "StockQuote",
-        "port": "StockQuoteSoap12",
-        "operation": "GetQuote"
+      "periodicTable": {
+        "service": "periodicTable",
+        "port": "soap_periodictableSoap",
+        "operation": "GetAtomicNumber"
       }
     }
   }
@@ -243,58 +234,57 @@ As a result, the data source won't be ready to create models until it's connecte
 The recommended way is to use an event handler for the 'connected' event; for example:
 
 ```javascript
-ds.once('connected', function () {
-   // Create the model
-   var WeatherService = ds.createModel('WeatherService', {});
-   //...
+module.exports = function(periodictableperiodictableSoap) {
+
+  var soapDataSource = server.datasources.soapDS;
+  var periodictableperiodictableSoap;
+
+  soapDataSource.once('connected', function () {
+    // Create the model
+    periodictableperiodictableSoap = soapDataSource.createModel('periodictableperiodictableSoap', {});
+  });
+  ...
 }
 ```
 
 ## Extending a model to wrap and mediate SOAP operations
 
-Once you define the model, you can extend it to wrap or mediate SOAP operations
+You can extend a LoopBack model to wrap or mediate SOAP operations
 and define new methods.
 The following example simplifies the `GetCityForecastByZIP` operation to a method
 that takes `zip` and returns an array of forecasts.
 
 ```javascript
-// Refine the methods
-WeatherService.forecast = function (zip, cb) {
-    WeatherService.GetCityForecastByZIP({ZIP: zip || '94555'},
-      function (err, response) {
-        console.log('Forecast: %j', response);
-        var result = (!err && response.GetCityForecastByZIPResult.Success) ?
-        response.GetCityForecastByZIPResult.ForecastResult.Forecast : [];
-        cb(err, result);
-      });
-};
+periodictableperiodictableSoap.GetAtomicNumber = function(GetAtomicNumber, callback) {
+    periodictableperiodictableSoap.GetAtomicNumber(GetAtomicNumber, function (err, response) {
+      var result = response;
+      callback(err, result);
+    });
+}
 ```
 
-The custom method on the model can be exposed as REST APIs.
-It uses the `loopback.remoteMethod` to define the mappings.
+To expose the custom method on the model as a REST API,
+use `loopback.remoteMethod` to define the mappings.
 
 ```javascript
-// Map to REST/HTTP
-loopback.remoteMethod(
-  WeatherService.forecast, {
-    accepts: [{
-      arg: 'zip',
-      type: 'string',
-      required: true,
-      http: {
-        source: 'query'
-      }
-    }],
-    returns: {
-      arg: 'result',
-      type: 'object',
-      root: true
-    },
-    http: {
-      verb: 'get',
-      path: '/forecast'
-    }
-  }
+periodictableperiodictableSoap.remoteMethod('GetAtomicWeight',
+{ isStatic: true,
+produces:
+ [ { produces: 'application/json' },
+   { produces: 'application/xml' } ],
+accepts:
+ [ { arg: 'GetAtomicWeight',
+     type: 'GetAtomicWeight',
+     description: 'GetAtomicWeight',
+     required: true,
+     http: { source: 'body' } } ],
+returns:
+ [ { arg: 'data',
+     type: 'GetAtomicWeightResponse',
+     description: 'GetAtomicWeightResponse',
+     root: true } ],
+http: { verb: 'post', path: '/GetAtomicWeight' },
+description: 'GetAtomicWeight' }
 );
 ```
 
@@ -305,54 +295,20 @@ To expose such methods over REST, you need to do the following with a boot scrip
 such as `server/a-soap.js`:
 
 ```javascript
-module.exports = function(app, cb) {
-  var ds = app.dataSources.WeatherServiceDS;
-  if (ds.connected) {
-    var weather = ds.createModel('weather', {}, {base: 'Model'});
-    app.model(weather);
-    process.nextTick(cb);
-  } else {
-    ds.once('connected', function() {
-      var weather = ds.createModel('weather', {}, {base: 'Model'});
-      app.model(weather);
-      cb();
-    });
-  }
-};
+var server = require('../server'); // Require all models defined in server dir
+
+module.exports = function(periodictableperiodictableSoap) {
+
+  var soapDataSource = server.datasources.soapDS;
+  var periodictableperiodictableSoap;
+
+  soapDataSource.once('connected', function () {
+    // Create the model
+    periodictableperiodictableSoap = soapDataSource.createModel('periodictableperiodictableSoap', {});
+  });
 ```
 
 ## Examples
 
-The [loopback-example-connector]
-(https://github.com/strongloop/loopback-example-connector/tree/soap)
-repository provides several examples in the `soap` branch:
-
-Get stock quotes by symbols: 
-[stock-ws.js]
-(https://github.com/strongloop/loopback-example-connector/blob/soap/stock-ws.js).
-Run with the command:
-
-```shell
-$ node example/stock-ws
-```
-
-Get weather and forecast information for a given zip code: 
-[weather-ws.js]
-(https://github.com/strongloop/loopback-connector-soap/blob/master/example/weather-ws.js).
-Run with the command:
-
-```shell
-$ node example/weather-ws
-```
-
-Expose REST APIs to proxy the SOAP web services:
-[weather-rest.js]
-(https://github.com/strongloop/loopback-example-connector/blob/soap/weather-rest.js).
-Run with the command:
-
-```shell
-$ node example/weather-rest
-```
-
-View the results at 
-[http://localhost:3000/explorer](http://localhost:3000/explorer).
+See [loopback-example-connector]
+(https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
