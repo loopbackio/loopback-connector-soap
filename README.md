@@ -20,11 +20,13 @@ $ npm install loopback-connector-soap --save
 This will install the module from npm and add it as a dependency to the application's 
 [package.json](http://loopback.io/doc/en/lb2/package.json.html) file.
 
-## Using the SOAP CLI
+## Connecting a LoopBack app to a SOAP service
 
-The LoopBack command-line tool includes a command to generate (discover) models based on SOAP web service.  Use this command, `lb soap` to automatically create a set of models based on a SOAP service WSDL file.  For more information, see [SOAP generator](http://loopback.io/doc/en/lb3/SOAP-generator.html).
+There are two ways to connect a LoopBack app to a SOAP web service:
+- [Use the LoopBack CLI SOAP generator](http://loopback.io/doc/en/lb3/SOAP-generator.html) to generate (discover) models based on a SOAP service WSDL.  This command is typically the easiest way to create a LoopBack API backed by a SOAP web service.
+- Manually write code that uses the SOAP data source APIs.  This provides the greatest flexibility, but requires more work.
 
-**This command is the easiest way to create a LoopBack API backed by a SOAP web service.**
+See [loopback-example-connector/soap](https://github.com/strongloop/loopback-example-connector/tree/soap) for an example of the second method.
 
 ## Creating a data source
 
@@ -229,7 +231,64 @@ A complete example datasource.json:
 }
 ```
 
+## Creating a SOAP data source programmatically
+
+Instead of defining a data source with `datasources.json`, you can define a data source in code; for example:
+
+```javascript
+var loopback = require('loopback');
+var app = module.exports = loopback();
+
+var ds = loopback.createDataSource('soap',
+  {
+    connector: require('loopback-connector-soap'),
+    remotingEnabled: true,
+    wsdl: 'http://www.webservicex.net/periodictable.asmx?WSDL' // The url to WSDL
+  });
+```
+
+## Creating a model from a SOAP data source
+
+The SOAP connector loads WSDL documents asynchronously.
+As a result, the data source won't be ready to create models until it's connected.
+The recommended way is to use an event handler for the 'connected' event; for example 
+as shown below.
+
+Once you define the model, you can extend it to wrap or mediate SOAP operations
+and define new methods. The example below shows adding a LoopBack remote method
+for the SOAP service's `GetAtomicNumber` operation.
+
+```javascript
+...
+ds.once('connected', function () {
+
+  // Create the model
+  var PeriodictableService = ds.createModel('PeriodictableService', {});
+
+  // External PeriodTable WebService operation exposed as REST APIs through LoopBack
+  PeriodictableService.atomicnumber = function (elementName, cb) {
+    PeriodictableService.GetAtomicNumber({ElementName: elementName || 'Copper'}, function (err, response) {
+      var result = response;
+      cb(err, result);
+    });
+  };
+
+  // Map to REST/HTTP
+  loopback.remoteMethod(
+      PeriodictableService.atomicnumber, {
+        accepts: [
+          {arg: 'elementName', type: 'string', required: true,
+            http: {source: 'query'}}
+        ],
+        returns: {arg: 'result', type: 'object', root: true},
+        http: {verb: 'get', path: '/GetAtomicNumber'}
+      }
+  );
+})
+...
+```
+
 ## Example
 
-For an example using the LoopBack SOAP connector, ee [loopback-example-connector](https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
+For a complete example using the LoopBack SOAP connector, see [loopback-example-connector](https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
 
