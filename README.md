@@ -194,9 +194,7 @@ security: {
 
 ## Creating a model from a SOAP data source
 
-The SOAP connector loads WSDL documents asynchronously.
-As a result, the data source won't be ready to create models until it's connected.
-The recommended way is to use an event handler for the 'connected' event; for example:
+Instead of defining a data source with `datasources.json`, you can define a data source in code; for example:
 
 ```js
 ds.once('connected', function () {
@@ -230,51 +228,47 @@ periodictableperiodictableSoap.GetAtomicNumber = function(GetAtomicNumber, callb
 }
 ```
 
-To expose the custom method on the model as a REST API,
-use `<model>.remoteMethod` to define the mappings.
+## Creating a model from a SOAP data source
+
+The SOAP connector loads WSDL documents asynchronously.
+As a result, the data source won't be ready to create models until it's connected.
+The recommended way is to use an event handler for the 'connected' event; for example
+as shown below.
+
+Once you define the model, you can extend it to wrap or mediate SOAP operations
+and define new methods. The example below shows adding a LoopBack remote method
+for the SOAP service's `GetAtomicNumber` operation.
 
 ```javascript
-periodictableperiodictableSoap.remoteMethod('GetAtomicNumber',
-{ isStatic: true,
-produces:
- [ { produces: 'application/json' },
-   { produces: 'application/xml' } ],
-accepts:
- [ { arg: 'GetAtomicNumber',
-     type: 'GetAtomicNumber',
-     description: 'GetAtomicNumber',
-     required: true,
-     http: { source: 'body' } } ],
-returns:
- [ { arg: 'data',
-     type: 'GetAtomicNumberResponse',
-     description: 'GetAtomicNumberResponse',
-     root: true } ],
-http: { verb: 'post', path: '/GetAtomicNumber' },
-description: 'GetAtomicNumber' }
-);
+...
+ds.once('connected', function () {
+
+  // Create the model
+  var PeriodictableService = ds.createModel('PeriodictableService', {});
+
+  // External PeriodTable WebService operation exposed as REST APIs through LoopBack
+  PeriodictableService.atomicnumber = function (elementName, cb) {
+    PeriodictableService.GetAtomicNumber({ElementName: elementName || 'Copper'}, function (err, response) {
+      var result = response;
+      cb(err, result);
+    });
+  };
+
+  // Map to REST/HTTP
+  loopback.remoteMethod(
+      PeriodictableService.atomicnumber, {
+        accepts: [
+          {arg: 'elementName', type: 'string', required: true,
+            http: {source: 'query'}}
+        ],
+        returns: {arg: 'result', type: 'object', root: true},
+        http: {verb: 'get', path: '/GetAtomicNumber'}
+      }
+  );
+})
+...
 ```
 
-## Use boot script to create model and expose APIs to API Explorer
+## Example
 
-The SOAP connector builds operations from WSDL asynchronously.
-To expose such methods over REST, you need to do the following with a boot script,
-such as `server/a-soap.js`:
-
-```javascript
-var server = require('../server'); // Require all models defined in server dir
-
-module.exports = function(periodictableperiodictableSoap) {
-
-  var soapDataSource = server.datasources.soapDS;
-  var periodictableperiodictableSoap;
-
-  soapDataSource.once('connected', function () {
-    // Create the model
-    periodictableperiodictableSoap = soapDataSource.createModel('periodictableperiodictableSoap', {});
-  });
-```
-
-## Examples
-
-See [loopback-example-connector](https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
+For a complete example using the LoopBack SOAP connector, see [loopback-example-connector](https://github.com/strongloop/loopback-example-connector/tree/soap).  The repository provides examples in the `soap` branch.
