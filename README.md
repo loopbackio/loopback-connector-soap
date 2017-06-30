@@ -59,7 +59,9 @@ from the WSDL document; for example below it is <code>http://www.webservicex.net
 <tr>
 <td>wsdl</td>
 <td>String</td>
-<td>HTTP URL or local file system path to the WSDL file. Default is <code>?wsdl</code>.</td>
+<td>HTTP URL or local file system path to the WSDL file. Default is <code>?wsdl</code>.
+In the example above, it would be <code>http://www.webservicex.net/periodictable.asmx?wsdl</code>.
+</td>
 </tr>
 <tr>
 <td>wsdl_options</td>
