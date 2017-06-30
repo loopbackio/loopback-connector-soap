@@ -20,29 +20,14 @@ $ npm install loopback-connector-soap --save
 This will install the module from npm and add it as a dependency to the application's 
 [package.json](http://loopback.io/doc/en/lb2/package.json.html) file.
 
-## Using the SOAP CLI
+## Overview
 
-The LoopBack command-line tool includes a command to generate (discover) models based on SOAP web service.  Use this command, `lb soap` to automatically create a set of models based on a SOAP service WSDL file.  For more information, see [SOAP generator](http://loopback.io/doc/en/lb3/SOAP-generator.html).
+There are two ways to use the SOAP connector:
 
-**This command is the easiest way to create a LoopBack API backed by a SOAP web service.**
+- Use the LoopBack CLI `lb soap` command to automatically create a set of models based on a SOAP service WSDL file.  Often, this will be the easiest way to connect to a SOAP web service, but may not be suitable for all applications.  For more information, see [SOAP generator](http://loopback.io/doc/en/lb3/SOAP-generator.html).
+- Write the code manually, calling the `loopback-connector-soap` and data source APIs directly.  **This is the approach illustrated here**.
 
-## Creating a data source
-
-Use the [data source generator](http://loopback.io/doc/en/lb2/Data-source-generator.html) to add a SOAP data source to your application.
-
-With the API Connect toolkit:
-
-```shell
-$ apic create --type datasource
-```
-
-With LoopBack tools:
-
-```shell
-$ lb loopback:datasource
-```
-
-Choose "SOAP webservices" as the data source type when prompted.
+While both approaches use the `loopback-connector-soap` data source connector, they appear quite different.
 
 ## SOAP data source properties
 
@@ -62,12 +47,13 @@ The following table describes the SOAP data source properties you can set in `da
 <td>String</td>
 <td>URL to the SOAP web service endpoint. If not present, defaults to the
 <code>location</code> attribute of the SOAP address for the service/port
-from the WSDL document; for example:
-<pre><code><wsdl:service name="periodictable">
-<wsdl:port name="periodictableSoap" binding="tns:periodictableSoap">
-<soap:address location="http://www.webservicex.net/periodictable.asmx"/>
-</wsdl:port>
-</wsdl:service></code></pre>
+from the WSDL document; for example below it is <code>http://www.webservicex.net/periodictable.asmx</code>:
+<pre>
+&lt;wsdl:service name="periodictable"&gt;
+&lt;wsdl:port name="periodictableSoap" binding="tns:periodictableSoap"&gt;
+&lt;soap:address location="http://www.webservicex.net/periodictable.asmx"/&gt;
+&lt;/wsdl:port&gt;
+&lt;/wsdl:service&gt;</pre>
 </td>
 </tr>
 <tr>
@@ -139,7 +125,7 @@ Here is an example operations property for the periodic table service:
 ```javascript
 operations: {
   // The key is the method name
-  stockQuote: {
+  periodicTable: {
     service: 'periodictable', // The WSDL service name
     port: 'periodictableSoap', // The WSDL port name
     operation: 'GetAtomicNumber' // The WSDL operation name
@@ -206,46 +192,26 @@ security: {
   </tbody>
 </table>
 
-## Example datasource.json
-
-A complete example datasource.json:
-
-```javascript
-{
-  "soapDS": {
-    "url": "http://www.webservicex.net/periodictable.asmx",
-    "name": "soapDS",
-    "wsdl": "http://www.webservicex.net/periodictable.asmx?WSDL",
-    "remotingEnabled": true,
-    "connector": "soap"
-    "operations": {
-      "periodicTable": {
-        "service": "periodicTable",
-        "port": "soap_periodictableSoap",
-        "operation": "GetAtomicNumber"
-      }
-    }
-  }
-}
-```
-
 ## Creating a model from a SOAP data source
 
 The SOAP connector loads WSDL documents asynchronously.
 As a result, the data source won't be ready to create models until it's connected.
 The recommended way is to use an event handler for the 'connected' event; for example:
 
-```javascript
-module.exports = function(periodictableperiodictableSoap) {
+```js
+ds.once('connected', function () {
 
-  var soapDataSource = server.datasources.soapDS;
-  var periodictableperiodictableSoap;
+  // Create the model
+  var PeriodictableService = ds.createModel('PeriodictableService', {});
 
-  soapDataSource.once('connected', function () {
-    // Create the model
-    periodictableperiodictableSoap = soapDataSource.createModel('periodictableperiodictableSoap', {});
-  });
-  ...
+  // External PeriodTable WebService operation exposed as REST APIs through LoopBack
+  PeriodictableService.atomicnumber = function (elementName, cb) {
+    PeriodictableService.GetAtomicNumber({ElementName: elementName || 'Copper'}, function (err, response) {
+      var result = response;
+      cb(err, result);
+    });
+  };
+...
 }
 ```
 
