@@ -135,6 +135,35 @@ operations: {
 }
 ```
 
+**IMPORTANT**: When using the CLI data source generator, you must supply the "stringified JSON" value for this property.
+For example:
+
+```
+{"getAtomicWeight":{"service":"periodictable","port":"periodictableSoap","operation":"GetAtomicWeight"},"getAtomicNumber":{"service":"periodictable","port":"periodictableSoap","operation":"GetAtomicNumber"}}
+```
+
+To generate the stringified value, you can use the following code (for example):
+
+```
+var operations = {
+  "operations": {
+    "getAtomicWeight": {
+      "service": "periodictable",
+      "port": "periodictableSoap",
+      "operation": "GetAtomicWeight"
+    },
+    "getAtomicNumber": {
+      "service": "periodictable",
+      "port": "periodictableSoap",
+      "operation": "GetAtomicNumber"
+    }
+  }
+};
+
+var stringifiedOps = JSON.stringify (operations);
+console.log(stringifiedOps);
+```
+
 ### security property
 
 The `security` property value is a JSON object with a `scheme` property.
