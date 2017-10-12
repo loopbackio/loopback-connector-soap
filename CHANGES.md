@@ -1,3 +1,25 @@
+2017-10-12, Version 4.0.1
+=========================
+
+ * ClientSSL: use correct configuration variable (Kevin Delisle)
+
+ * Fix CI by adding .travis.yml (#87) (Diana Lau)
+
+ * Add stalebot configuration (Kevin Delisle)
+
+ * Create Issue and PR Templates (#83) (Sakib Hasan)
+
+ * Add CODEOWNER file (Diana Lau)
+
+ * Update README.md (Rand McKinney)
+
+ * Fix table formatting (crandmck)
+
+ * Cleanup (crandmck)
+
+ * Use periodictable instead of weather example (crandmck)
+
+
 2017-02-07, Version 4.0.0
 =========================
 
