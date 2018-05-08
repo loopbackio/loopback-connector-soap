@@ -94,6 +94,22 @@ describe('soap connector', function () {
         });
       });
 
+      it('should support model methods as promises', function (done) {
+        var StockQuoteService = ds.createModel('StockQuoteService', {});
+
+        // Short method names
+        StockQuoteService.GetQuote({symbol: 'IBM'}).then(function (response) {
+          var index = response.GetQuoteResult.indexOf('<StockQuotes><Stock><Symbol>IBM</Symbol><Last>');
+          //StockQoute external webservice sends 'exception' rarely as a response.  This is not a problem with connector code. This happens even when we use
+          //web service client provided by them, http://www.webservicex.net/New/Home/ServiceDetail/9  Hence below check accounts for this.
+          if (index === -1) {
+            index = response.GetQuoteResult.indexOf('exception');
+          }
+          assert.ok(index > -1);
+          done();
+        }, done);
+      });
+
     });
 
     describe('XML/JSON conversion utilities', function() {
