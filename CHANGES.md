@@ -1,3 +1,9 @@
+2018-05-25, Version 4.1.0
+=========================
+
+ * Add test case for operation returning promise (shimks)
+
+
 2017-10-12, Version 4.0.1
 =========================
 

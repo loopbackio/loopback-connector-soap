@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-soap",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "LoopBack SOAP Web Services Connector",
   "engines": {
     "node": ">=4"
