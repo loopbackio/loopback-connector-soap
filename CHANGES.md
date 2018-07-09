@@ -1,3 +1,13 @@
+2018-07-09, Version 4.2.0
+=========================
+
+ * chore: update node version and dependencies (virkt25)
+
+ * Changed obsolete wsdl url and adapted tests (Francois)
+
+ * [WebFM] cs/pl/ru translation (candytangnb)
+
+
 2018-05-25, Version 4.1.0
 =========================
 
