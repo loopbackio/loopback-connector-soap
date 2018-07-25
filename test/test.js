@@ -181,6 +181,93 @@ describe('soap connector', function () {
       });
     });
 
+    describe('without listener on "connected"', function () {
+      var ds;
+      var EmailvernotestemailService;
+
+      before(function () {
+        ds = loopback.createDataSource('soap',
+          {
+            connector: require('../index'),
+            wsdl: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx?wsdl', // The url to WSDL
+            url: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx', // The service endpoint
+            // Map SOAP service/port/operation to Node.js methods
+            operations: {
+              // The key is the method name
+              verifyMXRecord: {
+                service: 'EmailVerNoTestEmail', // The WSDL service name
+                port: 'EmailVerNoTestEmailSoap', // The WSDL port name
+                operation: 'VerifyMXRecord' // The WSDL operation name
+              },
+              verifyMXRecord2: {
+                service: 'EmailVerNoTestEmail', // The WSDL service name
+                port: 'EmailVerNoTestEmailSoap12', // The WSDL port name
+                operation: 'VerifyMXRecord' // The WSDL operation name
+              }
+            }
+          });
+      });
+
+      it('should invoke the verifyMXRecord', function (done) {
+        EmailvernotestemailService = ds.createModel('EmailvernotestemailService', {});
+        EmailvernotestemailService.verifyMXRecord({
+          email: 'test@email.com',
+          LicenseKey: 0
+        }, function (err, response) {
+          if (err) {
+            err.should.match(/Timeout in connecting/);
+            done();
+          }
+          assert.ok(typeof response.VerifyMXRecordResult === 'number');
+          return done();
+        });
+      });
+    })
+
+    describe('on stuck datasource', function () {
+      var ds;
+      var EmailvernotestemailService;
+
+      before(function () {
+        ds = loopback.createDataSource('soap',
+          {
+            connector: require('../index'),
+            wsdl: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx?wsdl', // The url to WSDL
+            url: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx', // The service endpoint
+            // Map SOAP service/port/operation to Node.js methods
+            operations: {
+              // The key is the method name
+              verifyMXRecord: {
+                service: 'EmailVerNoTestEmail', // The WSDL service name
+                port: 'EmailVerNoTestEmailSoap', // The WSDL port name
+                operation: 'VerifyMXRecord' // The WSDL operation name
+              },
+              verifyMXRecord2: {
+                service: 'EmailVerNoTestEmail', // The WSDL service name
+                port: 'EmailVerNoTestEmailSoap12', // The WSDL port name
+                operation: 'VerifyMXRecord' // The WSDL operation name
+              }
+            }
+          });
+      });
+
+      it('should invoke the verifyMXRecord', function (done) {
+        EmailvernotestemailService = ds.createModel('EmailvernotestemailService', {});
+        ds.on('connected', () => {
+          ds.connected = false;
+        })
+        EmailvernotestemailService.verifyMXRecord({
+          email: 'test@email.com',
+          LicenseKey: 0
+        }, function (err, response) {
+          console.log(response);
+          console.log(err);
+          err.should.match(/Timeout in connecting/);
+          done();
+        });
+      });
+    })
+
     describe('models with operations', function () {
       var ds;
       before(function (done) {
