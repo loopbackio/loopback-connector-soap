@@ -1,8 +1,25 @@
-Licensed Materials - Property of IBM
-IBM StrongLoop Software
-Copyright IBM Corp. 2016. All Rights Reserved.
-US Government Users Restricted Rights - Use, duplication or disclosure
-restricted by GSA ADP Schedule Contract with IBM Corp.
+Copyright (c) IBM Corp. 2012,2018. All Rights Reserved.
+Node module: loopback-connector-soap
+This project is licensed under the MIT License, full text below.
 
-See full text of IBM International Program License Agreement (IPLA)
-http://www-03.ibm.com/software/sla/sladb.nsf/pdf/ipla/$file/ipla.pdf
+--------
+
+MIT license
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
