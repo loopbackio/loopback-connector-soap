@@ -1,3 +1,11 @@
+2018-08-07, Version 4.3.0
+=========================
+
+ * Update to MIT license (#100) (Diana Lau)
+
+ * feat: Add ability to pass json soapHeader (Mario Estrada)
+
+
 2018-07-09, Version 4.2.0
 =========================
 

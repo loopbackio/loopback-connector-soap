@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-soap",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "LoopBack SOAP Web Services Connector",
   "engines": {
     "node": ">=6"
@@ -23,7 +23,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/strongloop/loopback-connector-soap.git"
-  },  
+  },
   "copyright.owner": "IBM Corp.",
   "license": "MIT"
 }
