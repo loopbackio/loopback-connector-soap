@@ -3,6 +3,8 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
+'use strict';
+
 var fs = require('fs'),
   soap = require('strong-soap').soap,
   assert = require('assert'),
@@ -93,7 +95,6 @@ describe('soap connector', function () {
           done(err);
         });
       });
-
     });
 
     it('should reject bad username/password with WSSecurity', function (done) {
@@ -115,7 +116,6 @@ describe('soap connector', function () {
           done();
         });
       });
-
     });
 
     // FIXME: [rfeng] node-soap module doesn't support BasicAuth on the server side yet
@@ -191,8 +191,7 @@ describe('soap connector', function () {
         test.server.listen(3000, null, null, function () {
           test.soapServer = soap.listen(test.server, '/stockquote', test.service, test.wsdl);
           test.soapServer.wsdl.options.attributesKey = 'attributes';
-          test.baseUrl =
-            'https://' + test.server.address().address + ":" + test.server.address().port;
+          test.baseUrl = 'https://' + test.server.address().address + ":" + test.server.address().port;
 
           test.soapServer.log = function (type, data) {
             // type is 'received' or 'replied'
@@ -241,10 +240,6 @@ describe('soap connector', function () {
             done(err);
           });
       });
-
     });
   });
-
-
-
 });
