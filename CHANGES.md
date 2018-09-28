@@ -1,3 +1,13 @@
+2018-09-28, Version 5.0.0
+=========================
+
+ * chore(lib): add object destructuring (Francois)
+
+ * feat(lib): use let/const and template string (Francois)
+
+ * feat(package): update debug dependency to v4 (Francois)
+
+
 2018-08-07, Version 4.3.0
 =========================
 
