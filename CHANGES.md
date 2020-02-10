@@ -1,3 +1,17 @@
+2020-02-10, Version 5.1.0
+=========================
+
+ * Update README.md (#107) (Realetive)
+
+ * chore: improve issue and PR templates (Nora)
+
+ * add node 12 to CI (Nora)
+
+ * drop support for node 6 (Nora)
+
+ * Update README.md (Iliya Zubakin)
+
+
 2018-09-28, Version 5.0.0
 =========================
 
