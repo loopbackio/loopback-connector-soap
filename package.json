@@ -13,7 +13,7 @@
     "debug": "^4.0.1",
     "request": "^2.88.0",
     "strong-soap": "^1.13.1",
-    "strong-globalize": "^4.1.2"
+    "strong-globalize": "^5.0.5"
   },
   "devDependencies": {
     "loopback": "^3.0.0",
