@@ -17,7 +17,7 @@ describe('soap connector', function () {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
-          url: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx' // The service endpoint
+          url: 'http://www.dneonline.com/calculator.asmx' // The service endpoint
         });
       ds.on('connected', function () {
         ds.connector.should.have.property('client');
@@ -43,11 +43,27 @@ describe('soap connector', function () {
       var ds = loopback.createDataSource('soap',
         {
           connector: require('../index'),
-          wsdl: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx?wsdl'
+          wsdl: 'http://www.dneonline.com/calculator.asmx?wsdl'
         });
       ds.on('connected', function () {
         ds.connector.should.have.property('client');
         ds.connector.client.should.have.property('wsdl');
+        return done();
+      });
+    });
+  });
+
+  describe('client settings', function () {
+    it('should have httpHeaders set', function (done) {
+      var ds = loopback.createDataSource('soap',
+        {
+          connector: require('../index'),
+          wsdl: 'http://www.dneonline.com/calculator.asmx?wsdl', // The service endpoint,
+          httpHeaders: { "my-custom-header": "my-custom-header-value" }
+        });
+
+      ds.on('connected', function () {
+        ds.connector.client.getHttpHeaders().should.eql({ "my-custom-header": "my-custom-header-value" })
         return done();
       });
     });
@@ -60,7 +76,7 @@ describe('soap connector', function () {
         ds = loopback.createDataSource('soap',
           {
             connector: require('../index'),
-            wsdl: path.join(__dirname, 'wsdls/emailvernotestemail_external.wsdl')
+            wsdl: path.join(__dirname, 'wsdls/calculator_external.wsdl')
           });
         ds.on('connected', function () {
           return done();
@@ -68,35 +84,35 @@ describe('soap connector', function () {
       });
 
       it('should create models', function (done) {
-        var Emailvernotestemail = ds.createModel('EmailvernotestemailService', {});
+        var Calculator = ds.createModel('CalculatorService', {});
         // Short method names
-        (typeof Emailvernotestemail.VerifyMXRecord).should.eql('function');
+        (typeof Calculator.Add).should.eql('function');
         // Full method names for SOAP 12 operations that conflict with the simple ones
-        (typeof Emailvernotestemail.EmailVerNoTestEmail_EmailVerNoTestEmailSoap12_VerifyMXRecord).should.eql('function');
+        (typeof Calculator.Calculator_CalculatorSoap12_Add).should.eql('function');
 
         return done();
       });
 
       it('should support model methods', function (done) {
-        var EmailvernotestemailService = ds.createModel('EmailvernotestemailService', {});
+        var CalculatorService = ds.createModel('CalculatorService', {});
 
-        EmailvernotestemailService.VerifyMXRecord({
-          email: 'test@email.com',
-          LicenseKey: 0
+        CalculatorService.Add({
+          intA: 1,
+          intB: 2
         }, function (err, response) {
-          assert.ok(typeof response.VerifyMXRecordResult === 'number');
+          assert.ok(typeof response.AddResult === 'number');
           return done();
         });
       });
 
       it('should support model methods as promises', function (done) {
-        var EmailvernotestemailService = ds.createModel('EmailvernotestemailService', {});
+        var CalculatorService = ds.createModel('CalculatorService', {});
 
-        EmailvernotestemailService.VerifyMXRecord({
-          email: 'test@email.com',
-          LicenseKey: 0
+        CalculatorService.Add({
+          intA: 1,
+          intB: 2
         }).then(function (response) {
-          assert.ok(typeof response.result.VerifyMXRecordResult === 'number');
+          assert.ok(typeof response.result.AddResult === 'number');
           return done();
         }, done);
       });
@@ -235,51 +251,51 @@ describe('soap connector', function () {
 
     describe('soap invocations', function () {
       var ds;
-      var EmailvernotestemailService;
+      var CalculatorService;
 
       before(function (done) {
         ds = loopback.createDataSource('soap',
           {
             connector: require('../index'),
-            wsdl: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx?wsdl', // The url to WSDL
-            url: 'http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx', // The service endpoint
+            wsdl: 'http://www.dneonline.com/calculator.asmx?wsdl', // The url to WSDL
+            url: 'http://www.dneonline.com/calculator.asmx', // The service endpoint
             // Map SOAP service/port/operation to Node.js methods
             operations: {
               // The key is the method name
-              verifyMXRecord: {
-                service: 'EmailVerNoTestEmail', // The WSDL service name
-                port: 'EmailVerNoTestEmailSoap', // The WSDL port name
-                operation: 'VerifyMXRecord' // The WSDL operation name
+              add: {
+                service: 'Calculator', // The WSDL service name
+                port: 'CalculatorSoap', // The WSDL port name
+                operation: 'Add' // The WSDL operation name
               },
-              verifyMXRecord2: {
-                service: 'EmailVerNoTestEmail', // The WSDL service name
-                port: 'EmailVerNoTestEmailSoap12', // The WSDL port name
-                operation: 'VerifyMXRecord' // The WSDL operation name
+              multiply: {
+                service: 'Calculator', // The WSDL service name
+                port: 'CalculatorSoap', // The WSDL port name
+                operation: 'Multiply' // The WSDL operation name
               }
             }
           });
         ds.on('connected', function () {
-          EmailvernotestemailService = ds.createModel('EmailvernotestemailService', {});
+          CalculatorService = ds.createModel('CalculatorService', {});
           return done();
         });
       });
 
-      it('should invoke the verifyMXRecord', function (done) {
-        EmailvernotestemailService.verifyMXRecord({
-          email: 'test@email.com',
-          LicenseKey: 0
+      it('should invoke the add', function (done) {
+        CalculatorService.add({
+          intA: 1,
+          intB: 2
         }, function (err, response) {
-          assert.ok(typeof response.VerifyMXRecordResult === 'number');
+          assert.ok(typeof response.AddResult === 'number');
           return done();
         });
       });
 
-      it('should invoke the verifyMXRecord2', function (done) {
-        EmailvernotestemailService.verifyMXRecord2({
-          email: 'test@email.com',
-          LicenseKey: 0
+      it('should invoke the multiply', function (done) {
+        CalculatorService.multiply({
+          intA: 2,
+          intB: 2
         }, function (err, response) {
-          assert.ok(typeof response.VerifyMXRecordResult === 'number');
+          assert.ok(typeof response.MultiplyResult === 'number');
           return done();
         });
       });
@@ -297,9 +313,9 @@ describe('soap connector', function () {
           events.push('after execute');
           return next();
         });
-        EmailvernotestemailService.verifyMXRecord({
-          email: 'test@email.com',
-          LicenseKey: 0
+        CalculatorService.add({
+          intA: 1,
+          intB: 2
         }, function () {
           assert.deepEqual(events, ['before execute', 'after execute']);
           return done();
