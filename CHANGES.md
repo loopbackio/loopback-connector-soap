@@ -1,3 +1,17 @@
+2020-10-14, Version 5.2.0
+=========================
+
+ * add feature to pass httpHeaders to client (Thiago Zenaro)
+
+ * chore: switch to DCO (#114) (Diana Lau)
+
+ * chore: add Node.js 14 to CI (#113) (Diana Lau)
+
+ * chore: update CODEOWNERS (#112) (Diana Lau)
+
+ * chore: update strong-globalize version (#111) (Diana Lau)
+
+
 2020-02-10, Version 5.1.0
 =========================
 
