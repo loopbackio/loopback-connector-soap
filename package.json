@@ -3,7 +3,7 @@
   "version": "5.2.0",
   "description": "LoopBack SOAP Web Services Connector",
   "engines": {
-    "node": ">=8.9"
+    "node": ">=10"
   },
   "main": "index.js",
   "scripts": {
@@ -12,13 +12,13 @@
   "dependencies": {
     "debug": "^4.0.1",
     "request": "^2.88.0",
-    "strong-soap": "^1.13.1",
-    "strong-globalize": "^5.0.5"
+    "strong-globalize": "^6.0.5",
+    "strong-soap": "^3.0.0"
   },
   "devDependencies": {
     "loopback": "^3.0.0",
-    "should": "^13.2.3",
-    "mocha": "^5.2.0"
+    "mocha": "^8.2.0",
+    "should": "^13.2.3"
   },
   "repository": {
     "type": "git",
