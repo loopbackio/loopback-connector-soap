@@ -1,3 +1,9 @@
+2020-11-18, Version 6.0.0
+=========================
+
+ * feat: update deps and drop Node 8 support (Raymond Feng)
+
+
 2020-10-14, Version 5.2.0
 =========================
 
