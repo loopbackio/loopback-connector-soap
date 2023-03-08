@@ -1,3 +1,21 @@
+2022-11-14, Version 6.0.1
+=========================
+
+ * chore: update dep (#124) (Diana Lau)
+
+ * docs: add SECURITY.md (#123) (Diana Lau)
+
+ * docs: update coc (#122) (Diana Lau)
+
+ * docs: add code of conduct (#121) (Diana Lau)
+
+ * ci: update pipelines (Rifa Achrinza)
+
+ * refactor: move repo to loopbackio org (#118) (Diana Lau)
+
+ * ci: convert from travis to gh action (Agnes Lin)
+
+
 2020-11-18, Version 6.0.0
 =========================
 
