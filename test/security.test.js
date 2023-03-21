@@ -171,7 +171,7 @@ describe('soap connector', function () {
 
   describe('https-based servers', function () {
     var https = require('https');
-    var certPath = path.resolve(__dirname, 'fixtures', 'test-certificate.p12');
+    var certPath = path.resolve(__dirname, 'fixtures', 'test-certificate2.pfx');
     before(function (done) {
       fs.readFile(__dirname + '/wsdls/stockquote.wsdl', 'utf8', function (err, data) {
         assert.ok(!err);
