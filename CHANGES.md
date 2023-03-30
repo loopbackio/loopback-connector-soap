@@ -1,3 +1,13 @@
+2023-03-30, Version 6.0.2
+=========================
+
+ * chore(deps): update github/codeql-action action to v2 (#133) (renovate[bot])
+
+ * chore(deps): add renovate.json (#119) (renovate[bot])
+
+ * chore: update package-lock (#125) (Diana Lau)
+
+
 2022-11-14, Version 6.0.1
 =========================
 
