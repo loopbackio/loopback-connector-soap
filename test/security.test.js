@@ -8,7 +8,7 @@
 var fs = require('fs'),
   soap = require('strong-soap').soap,
   assert = require('assert'),
-  loopback = require('loopback'),
+  DataSource = require('loopback-datasource-juggler').DataSource,
   path = require('path');
 
 var test = {};
@@ -72,7 +72,7 @@ describe('soap connector', function () {
     });
 
     it('should supports WSSecurity', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           security: {
@@ -98,7 +98,7 @@ describe('soap connector', function () {
     });
 
     it('should reject bad username/password with WSSecurity', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           security: {
@@ -143,7 +143,7 @@ describe('soap connector', function () {
     */
 
     it('should supports soap headers', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           security: {
@@ -211,7 +211,7 @@ describe('soap connector', function () {
       });
     });
     it('should support ClientSSL with PFX', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           security: {
