@@ -6,7 +6,7 @@
 'use strict';
 
 var should = require('should');
-var loopback = require('loopback');
+var DataSource = require('loopback-datasource-juggler').DataSource;
 var path = require('path');
 var fs = require('fs');
 var assert = require('assert');
@@ -14,7 +14,7 @@ var assert = require('assert');
 describe('soap connector', function () {
   describe('wsdl configuration', function () {
     it('should be able to derive wsdl from url', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           url: 'http://www.dneonline.com/calculator.asmx' // The service endpoint
@@ -27,7 +27,7 @@ describe('soap connector', function () {
     });
 
     it('should be able to support local wsdl', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           wsdl: path.join(__dirname, 'wsdls/weather.wsdl')
@@ -40,7 +40,7 @@ describe('soap connector', function () {
     });
 
     it('should be able to support remote wsdl', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           wsdl: 'http://www.dneonline.com/calculator.asmx?wsdl'
@@ -55,7 +55,7 @@ describe('soap connector', function () {
 
   describe('client settings', function () {
     it('should have httpHeaders set', function (done) {
-      var ds = loopback.createDataSource('soap',
+      var ds = new DataSource('soap',
         {
           connector: require('../index'),
           wsdl: 'http://www.dneonline.com/calculator.asmx?wsdl', // The service endpoint,
@@ -73,7 +73,7 @@ describe('soap connector', function () {
     describe('models without remotingEnabled', function () {
       var ds;
       before(function (done) {
-        ds = loopback.createDataSource('soap',
+        ds = new DataSource('soap',
           {
             connector: require('../index'),
             wsdl: path.join(__dirname, 'wsdls/calculator_external.wsdl')
@@ -126,7 +126,7 @@ describe('soap connector', function () {
         sampleReqJson = fs.readFileSync(path.join(__dirname, 'sample-req.json'), 'utf-8');
         sampleRes = fs.readFileSync(path.join(__dirname, 'sample-res.xml'), 'utf-8');
         sampleResJson = fs.readFileSync(path.join(__dirname, 'sample-res.json'), 'utf-8');
-        ds = loopback.createDataSource('soap',
+        ds = new DataSource('soap',
           {
             connector: require('../index'),
             wsdl: path.join(__dirname, 'wsdls/weather.wsdl')
@@ -172,7 +172,7 @@ describe('soap connector', function () {
     describe('models with remotingEnabled', function () {
       var ds;
       before(function (done) {
-        ds = loopback.createDataSource('soap',
+        ds = new DataSource('soap',
           {
             connector: require('../index'),
             remotingEnabled: true,
@@ -200,7 +200,7 @@ describe('soap connector', function () {
     describe('models with operations', function () {
       var ds;
       before(function (done) {
-        ds = loopback.createDataSource('soap',
+        ds = new DataSource('soap',
           {
             connector: require('../index'),
             wsdl: path.join(__dirname, 'wsdls/weather.wsdl'),
@@ -254,7 +254,7 @@ describe('soap connector', function () {
       var CalculatorService;
 
       before(function (done) {
-        ds = loopback.createDataSource('soap',
+        ds = new DataSource('soap',
           {
             connector: require('../index'),
             wsdl: 'http://www.dneonline.com/calculator.asmx?wsdl', // The url to WSDL
