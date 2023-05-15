@@ -1,4 +1,24 @@
-2023-03-30, Version 6.0.2
+2023-05-15, Version 7.0.0
+=========================
+
+ * chore(deps): update dependency mocha to v10.2.0 (#127) (renovate[bot])
+
+ * chore(deps): update actions/checkout action to v3 (#130) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v17 (#132) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v4.28.5 (#137) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v13.2.1 (#126) (renovate[bot])
+
+ * chore(deps): update actions/setup-node action to v3 (#131) (renovate[bot])
+
+ * chore: remove loopback dependencies in tests (#135) (Diana Lau)
+
+ * chore: drop support for Node.js 14 and lower (#134) (Diana Lau)
+
+
+2023-03-29, Version 6.0.2
 =========================
 
  * chore(deps): update github/codeql-action action to v2 (#133) (renovate[bot])
