@@ -1,3 +1,17 @@
+2023-06-14, Version 7.0.1
+=========================
+
+ * chore(deps): update dependency loopback-datasource-juggler to v4.28.6 (#141) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v3.5.2 (#142) (renovate[bot])
+
+ * fix: fix broken link in CI badge (#140) (Diana Lau)
+
+ * chore(deps): update commitlint monorepo to v17.6.5 (#139) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v3.5.1 (#138) (renovate[bot])
+
+
 2023-05-15, Version 7.0.0
 =========================
 
