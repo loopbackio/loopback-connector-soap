@@ -1,3 +1,15 @@
+2023-07-17, Version 7.0.2
+=========================
+
+ * fix(deps): update dependency strong-soap to v3.5.3 (#146) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v4.28.8 (#145) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v4.28.7 (#144) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v17.6.6 (#143) (renovate[bot])
+
+
 2023-06-14, Version 7.0.1
 =========================
 
