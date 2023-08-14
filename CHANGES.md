@@ -1,4 +1,16 @@
-2023-07-17, Version 7.0.2
+2023-08-14, Version 7.0.3
+=========================
+
+ * fix(deps): update dependency strong-soap to v3.5.4 (#150) (renovate[bot])
+
+ * chore(deps): update dependency @commitlint/cli to v17.7.1 (#149) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v17.7.0 (#148) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v17.6.7 (#147) (renovate[bot])
+
+
+2023-07-16, Version 7.0.2
 =========================
 
  * fix(deps): update dependency strong-soap to v3.5.3 (#146) (renovate[bot])
