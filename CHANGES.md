@@ -1,3 +1,11 @@
+2023-09-11, Version 7.0.4
+=========================
+
+ * fix(deps): update dependency strong-globalize to v6.0.6 (#152) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v4.28.9 (#151) (renovate[bot])
+
+
 2023-08-14, Version 7.0.3
 =========================
 
