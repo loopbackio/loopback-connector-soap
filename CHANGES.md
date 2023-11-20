@@ -1,3 +1,21 @@
+2023-11-20, Version 8.0.0
+=========================
+
+ * chore(deps): update commitlint monorepo to v18.4.2 (#156) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v18 (#158) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.0.3 (#160) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5 (#155) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v3.5.6 (#154) (renovate[bot])
+
+ * chore(deps): update actions/setup-node action to v4 (#159) (renovate[bot])
+
+ * chore: drop support for Node.js 16 and lower (#157) (Diana Lau)
+
+
 2023-09-11, Version 7.0.4
 =========================
 
