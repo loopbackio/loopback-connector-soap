@@ -1,3 +1,9 @@
+2023-12-07, Version 8.0.1
+=========================
+
+ * chore(deps): update commitlint monorepo to v18.4.3 (#161) (renovate[bot])
+
+
 2023-11-20, Version 8.0.0
 =========================
 
