@@ -1,3 +1,15 @@
+2024-01-09, Version 8.0.2
+=========================
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.0.5 (#165) (renovate[bot])
+
+ * chore(deps): update github/codeql-action action to v3 (#163) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v18.4.4 (#164) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.0.4 (#162) (renovate[bot])
+
+
 2023-12-07, Version 8.0.1
 =========================
 
