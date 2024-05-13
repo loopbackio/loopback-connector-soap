@@ -1,3 +1,13 @@
+2024-05-13, Version 8.0.6
+=========================
+
+ * fix(deps): update dependency strong-soap to v4.0.6 (#185) (renovate[bot])
+
+ * chore(deps): update dependency @commitlint/cli to v19.3.0 (#184) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v19.2.2 (#183) (renovate[bot])
+
+
 2024-04-08, Version 8.0.5
 =========================
 
