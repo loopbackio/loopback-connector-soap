@@ -1,3 +1,11 @@
+2024-06-06, Version 8.0.7
+=========================
+
+ * fix(deps): update dependency debug to v4.3.5 (#187) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.0.9 (#186) (renovate[bot])
+
+
 2024-05-13, Version 8.0.6
 =========================
 
