@@ -1,3 +1,19 @@
+2024-08-12, Version 8.0.9
+=========================
+
+ * fix(deps): update dependency strong-soap to v4.1.3 (#199) (renovate[bot])
+
+ * chore(deps): update dependency @commitlint/cli to v19.4.0 (#197) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v10.7.3 (#198) (renovate[bot])
+
+ * fix(deps): update dependency debug to v4.3.6 (#196) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v10.7.0 (#195) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.0.11 (#194) (renovate[bot])
+
+
 2024-07-04, Version 8.0.8
 =========================
 
