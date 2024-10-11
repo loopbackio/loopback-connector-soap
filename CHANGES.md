@@ -1,3 +1,17 @@
+2024-10-11, Version 8.0.11
+==========================
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.1 (#207) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v4.1.5 (#208) (renovate[bot])
+
+ * chore(deps): update dependency nyc to v17.1.0 (#206) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v19.5.0 (#205) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.0 (#204) (renovate[bot])
+
+
 2024-09-09, Version 8.0.10
 ==========================
 
