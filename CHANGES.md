@@ -1,3 +1,13 @@
+2024-11-11, Version 8.0.12
+==========================
+
+ * fix(deps): update dependency strong-soap to v4.1.6 (#211) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.2 (#210) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v10.8.2 (#209) (renovate[bot])
+
+
 2024-10-11, Version 8.0.11
 ==========================
 
