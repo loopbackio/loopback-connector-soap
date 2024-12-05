@@ -1,3 +1,13 @@
+2024-12-05, Version 8.0.13
+==========================
+
+ * fix(deps): update dependency strong-soap to v4.1.7 (#214) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11 (#213) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v19.6.0 (renovate[bot])
+
+
 2024-11-11, Version 8.0.12
 ==========================
 
