@@ -1,3 +1,15 @@
+2025-01-13, Version 8.0.14
+==========================
+
+ * fix(deps): update dependency strong-soap to v4.1.8 (#218) (renovate[bot])
+
+ * chore(deps): update dependency @commitlint/cli to v19.6.1 (#217) (renovate[bot])
+
+ * fix(deps): update dependency debug to v4.4.0 (#216) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.3 (#215) (renovate[bot])
+
+
 2024-12-05, Version 8.0.13
 ==========================
 
