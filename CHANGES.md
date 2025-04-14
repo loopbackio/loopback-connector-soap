@@ -1,3 +1,11 @@
+2025-04-14, Version 8.0.17
+==========================
+
+ * fix(deps): update dependency strong-soap to v4.1.11 (#228) (renovate[bot])
+
+ * chore: replace request (#227) (Diana Lau)
+
+
 2025-03-18, Version 8.0.16
 ==========================
 
