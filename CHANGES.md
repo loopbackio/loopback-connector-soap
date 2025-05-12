@@ -1,3 +1,17 @@
+2025-05-12, Version 8.0.18
+==========================
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.8 (#233) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v4.1.12 (#232) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v19.8.1 (#231) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.2.2 (#230) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.7 (#229) (renovate[bot])
+
+
 2025-04-14, Version 8.0.17
 ==========================
 
