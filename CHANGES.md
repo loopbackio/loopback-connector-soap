@@ -1,3 +1,17 @@
+2025-06-09, Version 8.0.19
+==========================
+
+ * fix(deps): update dependency strong-soap to v4.1.13 (#238) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.6.0 (#237) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.5.0 (#236) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.4.0 (#235) (renovate[bot])
+
+ * fix(deps): update dependency debug to v4.4.1 (#234) (renovate[bot])
+
+
 2025-05-12, Version 8.0.18
 ==========================
 
