@@ -13,7 +13,7 @@
     "debug": "^4.0.1",
     "postman-request": "^2.88.1-postman.42",
     "strong-globalize": "^6.0.5",
-    "strong-soap": "^4.0.0"
+    "strong-soap": "^5.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
