@@ -3,7 +3,7 @@
   "version": "8.0.20",
   "description": "LoopBack SOAP Web Services Connector",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "type": "git",
     "url": "https://github.com/loopbackio/loopback-connector-soap.git"
   },
-  "copyright.owner": "IBM Corp.",
+  "copyright.owner": "IBM Corp. and LoopBack contributors",
   "license": "MIT"
 }
