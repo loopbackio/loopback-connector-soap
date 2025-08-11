@@ -1,3 +1,17 @@
+2025-08-11, Version 9.0.0
+=========================
+
+ * chore(deps): update actions/checkout action to v5 (#246) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v5 (#247) (renovate[bot])
+
+ * fix(deps): update dependency postman-request to v2.88.1-postman.43 (#244) (renovate[bot])
+
+ * chore: drop Node.js 18 support (#243) (Diana Lau)
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.10 (#242) (renovate[bot])
+
+
 2025-07-14, Version 8.0.20
 ==========================
 
