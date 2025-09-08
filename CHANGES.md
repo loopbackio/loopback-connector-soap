@@ -1,3 +1,21 @@
+2025-09-08, Version 9.0.1
+=========================
+
+ * chore: update package-lock.json (dhmlau)
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.2.0 (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v5.0.1 (#252) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.7.2 (#249) (renovate[bot])
+
+ * chore(deps): update actions/setup-node action to v5 (#250) (renovate[bot])
+
+ * fix(deps): update dependency debug to v4.4.2 (#251) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.11 (#248) (renovate[bot])
+
+
 2025-08-11, Version 9.0.0
 =========================
 
