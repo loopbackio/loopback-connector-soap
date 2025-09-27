@@ -16,8 +16,8 @@
     "strong-soap": "^5.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.0",
-    "@commitlint/config-conventional": "^19.0.0",
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "loopback-datasource-juggler": "^5.2.1",
     "mocha": "^11.0.0",
     "nyc": "^17.0.0",
