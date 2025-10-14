@@ -1,3 +1,37 @@
+2025-10-14, Version 9.0.2
+=========================
+
+ * chore(deps): update dependency strong-soap to v5.0.3 (#262) (renovate[bot])
+
+ * chore(deps): update actions/setup-node action to v6 (#261) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.7.4 (#258) (renovate[bot])
+
+ * chore(deps): update dependency @commitlint/cli to v20.1.0 (#259) (renovate[bot])
+
+ * chore(deps): update github/codeql-action action to v4 (#260) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v20 (#257) (renovate[bot])
+
+ * chore(deps): update dependency debug to v4.4.3 (#256) (renovate[bot])
+
+ * fix: update readme (#255) (Diana Lau)
+
+ * fix: fix codeql in CI (#254) (Diana Lau)
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.2.1 (#253) (renovate[bot])
+
+ * fix(deps): update dependency strong-soap to v5.0.1 (#252) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.7.2 (#249) (renovate[bot])
+
+ * chore(deps): update actions/setup-node action to v5 (#250) (renovate[bot])
+
+ * fix(deps): update dependency debug to v4.4.2 (#251) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v5.1.11 (#248) (renovate[bot])
+
+
 2025-08-11, Version 9.0.0
 =========================
 
