@@ -1,3 +1,17 @@
+2025-11-11, Version 9.0.3
+=========================
+
+ * chore(deps): update dependency loopback-datasource-juggler to v6 (#268) (renovate[bot])
+
+ * chore(deps): update dependency strong-soap to v5.0.4 (#267) (renovate[bot])
+
+ * chore(deps): update dependency postman-request to v2.88.1-postman.46 (#265) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.7.5 (#266) (renovate[bot])
+
+ * chore(deps): update dependency postman-request to v2.88.1-postman.45 (#263) (renovate[bot])
+
+
 2025-10-14, Version 9.0.2
 =========================
 
