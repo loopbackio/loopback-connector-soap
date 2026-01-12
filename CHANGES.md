@@ -1,3 +1,15 @@
+2026-01-12, Version 9.0.5
+=========================
+
+ * chore(deps): update dependency strong-soap to v5.0.6 (#276) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v6.0.2 (#275) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v20.3.1 (#274) (renovate[bot])
+
+ * chore(deps): update dependency postman-request to v2.88.1-postman.47 (#273) (renovate[bot])
+
+
 2025-12-08, Version 9.0.4
 =========================
 
