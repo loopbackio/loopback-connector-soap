@@ -1,3 +1,13 @@
+2026-02-09, Version 9.0.6
+=========================
+
+ * chore(deps): update commitlint monorepo to v20.4.1 (#279) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v20.4.0 (#278) (renovate[bot])
+
+ * chore(deps): update dependency postman-request to v2.88.1-postman.48 (#277) (renovate[bot])
+
+
 2026-01-12, Version 9.0.5
 =========================
 
