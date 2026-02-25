@@ -20,7 +20,7 @@
     "@commitlint/config-conventional": "^20.0.0",
     "loopback-datasource-juggler": "^6.0.0",
     "mocha": "^11.0.0",
-    "nyc": "^17.0.0",
+    "nyc": "^18.0.0",
     "should": "^13.2.3"
   },
   "repository": {
