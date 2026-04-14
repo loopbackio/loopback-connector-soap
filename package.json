@@ -13,12 +13,12 @@
     "debug": "^4.0.1",
     "postman-request": "^2.88.1-postman.42",
     "strong-globalize": "^6.0.5",
-    "strong-soap": "^5.0.2"
+    "strong-soap": "^5.0.9"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.0.0",
     "@commitlint/config-conventional": "^20.0.0",
-    "loopback-datasource-juggler": "^6.0.0",
+    "loopback-datasource-juggler": "^6.0.5",
     "mocha": "^11.0.0",
     "nyc": "^18.0.0",
     "should": "^13.2.3"
