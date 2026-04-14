@@ -1,3 +1,13 @@
+2026-04-14, Version 9.0.8
+=========================
+
+ * chore: update dependencies (#291) (Diana Lau)
+
+ * fix: fix CI (#290) (Diana Lau)
+
+ * chore(deps): update commitlint monorepo to v20.5.0 (#287) (renovate[bot])
+
+
 2026-03-09, Version 9.0.7
 =========================
 
