@@ -3,7 +3,7 @@
   "version": "9.0.9",
   "description": "LoopBack SOAP Web Services Connector",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "main": "index.js",
   "scripts": {
