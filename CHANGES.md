@@ -1,3 +1,19 @@
+2026-06-10, Version 10.0.0
+==========================
+
+ * fix(deps): update dependency strong-soap to v6 (#300) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v7 (#299) (renovate[bot])
+
+ * chore: drop Node.js 20 support (#298) (Diana Lau)
+
+ * chore(deps): update commitlint monorepo to v21.0.2 (#297) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v11.7.6 (#296) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v21 (#293) (renovate[bot])
+
+
 2026-05-11, Version 9.0.9
 =========================
 
