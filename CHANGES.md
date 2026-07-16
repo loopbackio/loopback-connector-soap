@@ -1,3 +1,19 @@
+2026-07-16, Version 10.0.1
+==========================
+
+ * chore(deps): update dependency strong-soap to v6.0.1 (renovate[bot])
+
+ * chore(deps): update actions/setup-node action to v7 (renovate[bot])
+
+ * chore(deps): update dependency @commitlint/cli to v21.2.1 (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v21.2.0 (#303) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v21.1.0 (#302) (renovate[bot])
+
+ * chore(deps): update actions/checkout action to v7 (renovate[bot])
+
+
 2026-06-10, Version 10.0.0
 ==========================
 
