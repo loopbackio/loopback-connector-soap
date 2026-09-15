@@ -1,3 +1,11 @@
+2026-09-15, Version 10.0.3
+==========================
+
+ * chore(deps): update dependency mocha to v12.0.1 (#313) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v12 (#312) (renovate[bot])
+
+
 2026-08-18, Version 10.0.2
 ==========================
 
