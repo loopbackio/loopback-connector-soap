@@ -1,3 +1,23 @@
+2026-10-21, Version 10.0.4
+==========================
+
+ * chore(deps): update commitlint monorepo to v21.2.4 (#320) (renovate[bot])
+
+ * chore(deps): update dependency postman-request to v2.88.1-postman.51 (#321) (renovate[bot])
+
+ * chore(deps): update dependency strong-soap to v6.0.4 (#319) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v7.0.4 (#318) (renovate[bot])
+
+ * chore(deps): update dependency mocha to v12.0.3 (#316) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v7.0.3 (#314) (renovate[bot])
+
+ * chore(deps): update dependency strong-soap to v6.0.3 (#315) (renovate[bot])
+
+ * chore(deps): update commitlint monorepo to v21.2.3 (#317) (renovate[bot])
+
+
 2026-09-15, Version 10.0.3
 ==========================
 
