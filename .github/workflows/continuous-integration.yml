@@ -65,7 +65,7 @@ jobs:
       - name: Use Node.js 22
         uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 26
       - name: Bootstrap project
         run: npm ci --ignore-scripts
       - name: Verify commit linting
