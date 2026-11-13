@@ -1,3 +1,15 @@
+2026-11-13, Version 10.0.5
+==========================
+
+ * chore(deps): update dependency strong-soap to v6.0.5 (#325) (renovate[bot])
+
+ * chore(deps): update dependency loopback-datasource-juggler to v7.0.5 (#324) (renovate[bot])
+
+ * chore(deps): update dependency postman-request to v2.88.1-postman.52 (#323) (renovate[bot])
+
+ * chore(deps): update dependency node to v26 (#322) (renovate[bot])
+
+
 2026-10-21, Version 10.0.4
 ==========================
 
